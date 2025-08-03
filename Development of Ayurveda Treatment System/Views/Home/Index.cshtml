@@ -1,8 +1,113 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<main class="main">
+    <section id="hero" class="hero section light-background">
+        <img class="aos-init aos-animate" src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+        <div class="container position-relative">
+            <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
+                <h2>WELCOME TO AYURGROW</h2>
+                <p>Empowering health through the science of Ayurveda and the innovation of today.</p>
+            </div>
+            <div class="content row gy-4">
+                <div class="col-lg-4 d-flex align-items-stretch">
+                    <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
+                        <h3>Why Choose Ayurgrow?</h3>
+                        <p>
+                            Ayurgrow harnesses the time-tested principles of Ayurveda, bringing centuries-old healing practices into the modern world. Ayurgrow doesn't just treat symptoms — it focuses on the root cause, promoting long-term wellness through lifestyle, diet, and natural remedies. Ayurgrow adapts treatments to your body type (dosha), health history, and lifestyle for tailored healing.
+                        </p>
+                        <div class="text-center">
+                            <a href="#about" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 d-flex align-items-stretch">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="row gy-4">
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
+                                    <i class="bi bi-clipboard-data"></i>
+                                    <h4>Personalized Ayurvedic Care</h4>
+                                    <p>
+                                        Experience holistic healing with remedies tailored just for your body type.
+                                        Consult certified Ayurvedic doctors from the comfort of your home.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box" data-aos="zoom-out" data-aos-delay="400">
+                                    <i class="bi bi-gem"></i>
+                                    <h4>
+                                        Authentic & Trusted Treatments
+                                    </h4>
+                                    <p>
+                                        All formulations are prepared by licensed professionals using classical Ayurvedic texts.
+                                        Safe, natural, and effective solutions for chronic and lifestyle conditions.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box" data-aos="zoom-out" data-aos-delay="500">
+                                    <i class="bi bi-inboxes"></i>
+                                    <h4>
+                                        Track Your Wellness Journey
+                                    </h4>
+                                    <p>
+                                        Monitor health improvements with digital tools.
+                                        Get ongoing support, follow-ups, and lifestyle guidance—all online.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="row gy-4 gx-5">
+                <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/img/about.jpg" class="img-fluid" alt="">
+                    <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+                </div>
+                <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                    <h3>About Us</h3>
+                    <p>
+                        Ayurgrow is a next-generation wellness platform that bridges the gap between ancient Ayurvedic wisdom and modern healthcare innovation. Built with a vision to make holistic healing more accessible, personalized, and effective, Ayurgrow empowers individuals to take control of their health through natural, science-backed Ayurvedic solutions.
+                    </p>
+                    <ul>
+                        <li>
+                            <i class="fa-solid fa-vial-circle-check"></i>
+                            <div>
+                                <h5>
+                                    Healing with Heart & Heritage
+                                </h5>
+                                <p>We blend ancient Ayurvedic wisdom with modern compassion to ensure you feel cared for—physically, mentally, and spiritually.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-pump-medical"></i>
+                            <div>
+                                <h5>Trusted Ayurvedic Doctors, Online</h5>
+                                <p>Consult certified Ayurvedic experts from your home.
+                                   Safe, personalized treatments delivered through our digital platform.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-heart-circle-xmark"></i>
+                            <div>
+                                <h5>
+                                    Quick Access to Quality Care
+                                </h5>
+                                <p>
+                                    Book appointments instantly, avoid waiting rooms, and receive timely herbal remedies—Ayurgrow brings Ayurveda to your fingertips.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
