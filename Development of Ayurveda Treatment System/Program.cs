@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace Development_of_Ayurveda_Treatment_System
 {
     public class Program
@@ -8,6 +10,9 @@ namespace Development_of_Ayurveda_Treatment_System
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Dependency injection for database server string
+            builder.Services.AddDbContext<Models.AyurgrowDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings")));
 
             var app = builder.Build();
 

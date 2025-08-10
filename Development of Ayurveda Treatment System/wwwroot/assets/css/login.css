@@ -1,0 +1,183 @@
+﻿body {
+}
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: white;
+    padding: 40px 0;
+    overflow: hidden;
+}
+
+.login-card {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-card .form-group {
+    margin-bottom: 15px;
+}
+
+.login-card .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.login-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.login-actions .btn-login {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px 20px;
+}
+
+.login-actions a {
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.social-login {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.social-login p {
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.social-login .btn {
+    margin: 5px;
+    width: 100%;
+    max-width: 180px;
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3c4043;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    transition: background-color 0.3s ease;
+    box-shadow: none;
+}
+
+.btn-google:hover {
+    background-color: #f1f3f4;
+}
+
+.btn-google:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
+}
+
+.btn-google .icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center; /* centers the whole group */
+    gap: 20px; /* equal spacing between icons */
+}
+
+.social-icons i {
+    font-size: 20px;
+    color: #1a1a1a;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.social-icons i:hover {
+    transform: scale(1.1);
+}
+
+.or-login-text {
+    text-align: center;
+    font-size: 14px;
+    margin: 20px 0 10px 0;
+    color: #444;
+}
+
+.login-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;    
+}
+
+.login-button-wrapper .btn {
+    width: 100%; /* Makes button as wide as the parent (same as input fields) */
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    background-color: #1977cc;
+}
+
+.register-link {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #007bff;
+    text-align: center;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.forgot-password a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
