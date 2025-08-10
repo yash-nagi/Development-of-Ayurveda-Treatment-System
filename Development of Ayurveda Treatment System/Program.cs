@@ -1,3 +1,4 @@
+using Development_of_Ayurveda_Treatment_System.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Development_of_Ayurveda_Treatment_System
@@ -7,12 +8,15 @@ namespace Development_of_Ayurveda_Treatment_System
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             // Dependency injection for database server string
-            builder.Services.AddDbContext<Models.AyurgrowDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings")));
+            //var connectionString = Environment.GetEnvironmentVariable("AYURGROW_DB_CONNECTION");
+
+            builder.Services.AddDbContext<AyurgrowDBContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnections")));
 
             var app = builder.Build();
 
