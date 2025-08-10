@@ -7,7 +7,7 @@
         <div class="login-section">
             <div class="login-card">
                 <h5>Login to Ayurgrow</h5>
-                <p>New user ?<a asp-action="Register"> Register Now</a></p>
+                <p>New user ?<a href="@Url.Action("Register", "Users")"> Register Now</a></p>
                 <form asp-action="Login" method="post">
                     <div class="form-group">
                         <label @*asp-for="Email"*@>Email</label>
