@@ -21,6 +21,28 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Login", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tbl_Login");
+                });
+
             modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Users", b =>
                 {
                     b.Property<string>("UserId")
