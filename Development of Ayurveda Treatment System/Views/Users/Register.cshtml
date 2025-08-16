@@ -1,0 +1,161 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.Users
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Register Page";
+}
+<main class="main">
+    <div class="container position-relative">
+        <div class="register-section">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text" id="progressText">Step 1 of 5</div>
+            </div>
+
+            <div class="register-card">
+                <h2 class="form-title">Create Your Account</h2>
+
+                <form asp-action="Register" method="post" enctype="multipart/form-data" id="multiStepForm">
+                    <!-- STEP 1 -->
+                    <div class="form-step active">
+                        <h4 class="section-heading">Account Information</h4>
+
+                        <div class="form-group">
+                            <label asp-for="UserName"></label>
+                            <input asp-for="UserName" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="form-step">
+                        <h4 class="section-heading">Personal Information</h4>
+
+                        <div class="form-group">
+                            <label asp-for="FirstName"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="MiddleName"></label>
+                            <input asp-for="MiddleName" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LastName"></label>
+                            <input asp-for="LastName" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Gender"></label>
+                            <input asp-for="Gender" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DOB">Date of Birth</label>
+                            <input asp-for="DOB" type="date" class="form-control" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="form-step">
+                        <h4 class="section-heading">Contact Information</h4>
+
+                        <div class="form-group">
+                            <label asp-for="MobileNo">Mobile No.</label>
+                            <input asp-for="MobileNo" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PhoneNo">Phone No.</label>
+                            <input asp-for="PhoneNo" class="form-control" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 4 -->
+                    <div class="form-step">
+                        <h4 class="section-heading">Address Details</h4>
+
+                        <div class="form-group">
+                            <label asp-for="Address"></label>
+                            <input asp-for="Address" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="City"></label>
+                            <input asp-for="City" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PostalCode">Postal Code</label>
+                            <input asp-for="PostalCode" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Region"></label>
+                            <input asp-for="Region" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Country"></label>
+                            <input asp-for="Country" class="form-control" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 5 -->
+                    <div class="form-step">
+                        <h4 class="section-heading">Other Details</h4>
+
+                        <div class="form-group">
+                            <label asp-for="Nationality"></label>
+                            <input asp-for="Nationality" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Religion"></label>
+                            <input asp-for="Religion" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ProfilePhoto"></label>
+                            <input asp-for="ProfilePhoto" type="file" class="form-control" />
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" id="prevBtn">Previous</button>
+                        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                        <button type="submit" class="btn btn-success d-none" id="submitBtn">Register</button>
+                    </div>
+
+                    <div class="already-account">
+                        Already have an account? <a asp-action="Login">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

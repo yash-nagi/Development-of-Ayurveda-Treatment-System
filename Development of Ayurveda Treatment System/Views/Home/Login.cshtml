@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Login Page";
+}
+<main class="main">
+    <div class="container position-relative">
+        <div class="login-section">
+            <div class="login-card">
+                <h5>Login to Ayurgrow</h5>
+                <p>New user ?<a href="@Url.Action("Register", "Users")"> Register Now</a></p>
+                <form asp-action="Login" method="post">
+                    <div class="form-group">
+                        <label @*asp-for="Email"*@>Email</label>
+                        <input @*asp-for="Email"*@ class="form-control" />
+                        <span @*asp-validation-for="Email"*@ class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label @*asp-for="Password"*@>Password</label>
+                        <input @*asp-for="Password" type="password"*@ class="form-control" />
+                        <span @*asp-validation-for="Password"*@ class="text-danger"></span>
+                    </div>
+                    <div class="login-button-wrapper">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="RememberMe" name="RememberMe" />
+                            <label for="RememberMe">Remember me</label>
+                        </div>
+                        <div class="forgot-password">
+                            <a href="/Account/ForgotPassword">Forgot password?</a>
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <div>
+                    <p class="or-login-text">Or login with:</p>
+                    <button href="#" class="btn-google">
+                        <img src="~/assets/img/Google.png" alt="Google" class="icon" height="32px" width="32px" />
+                        Continue with Google
+                    </button>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon facebook"><img src="~/assets/img/Facebook.png" alt="Facebook" class="icon" height="32px" width="32px"></img</a>
+                        <a href="#" class="social-icon linkedin"><img src="~/assets/img/Linkedin.png" alt="Facebook" class="icon" height="32px" width="32px"></a>
+                        <a href="#" class="social-icon twitter"><img src="~/assets/img/Twitter.png" alt="Facebook" class="icon" height="32px" width="32px"></a>
+                        <a href="#" class="social-icon opera"><img src="~/assets/img/Opera.png" alt="Facebook" class="icon" height="32px" width="32px"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
