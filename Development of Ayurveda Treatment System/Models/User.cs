@@ -23,7 +23,6 @@ namespace Development_of_Ayurveda_Treatment_System.Models
         [Required]
         [Column(TypeName = "nvarchar(20)")]
         public string FirstName { get; set; }
-        [Required]
         [Column(TypeName = "nvarchar(20)")]
         public string MiddleName { get; set; }
         [Required]
@@ -32,6 +31,9 @@ namespace Development_of_Ayurveda_Treatment_System.Models
         [Required]
         [Column(TypeName = "nvarchar(20)")]
         public string Gender { get; set; }
+        [Required]
+        [Column(TypeName = "nvarchar(20)")]
+        public string UserType { get; set; }
         [Required]
         [Column(TypeName = "nvarchar(100)")]
         public string Address { get; set; }
@@ -55,7 +57,7 @@ namespace Development_of_Ayurveda_Treatment_System.Models
         public long MobileNo { get; set; }
         [Required]
         [Column(TypeName = "nvarchar(20)")]
-        public string DOB{ get; set; }
+        public string DOB { get; set; }
         [Required]
         [Column(TypeName = "nvarchar(20)")]
         public string Nationality { get; set; }
@@ -65,6 +67,8 @@ namespace Development_of_Ayurveda_Treatment_System.Models
         [Column(TypeName = "nvarchar(200)")]
         public string ProfilePhoto { get; set; }
         [Column(TypeName = "varbinary(MAX)")]
-        public byte[] Imagepath { get; set; }
+        public byte[] Image { get; set; }
+        [NotMapped]
+        public IFormFile UploadedFile { get; set; }
     }
 }

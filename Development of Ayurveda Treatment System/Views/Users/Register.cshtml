@@ -33,7 +33,7 @@
 
                         <div class="form-group">
                             <label asp-for="Password"></label>
-                            <input asp-for="Password" class="form-control" />
+                            <input asp-for="Password" type="password" class="form-control" />
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
 
@@ -64,12 +64,30 @@
 
                         <div class="form-group">
                             <label asp-for="Gender"></label>
-                            <input asp-for="Gender" class="form-control" />
+                            <select asp-for="Gender" class="form-control">
+                                <option value="">-- Select Gender --</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
                             <label asp-for="DOB">Date of Birth</label>
                             <input asp-for="DOB" type="date" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="UserType">Registering As</label>
+                            <select id="UserType" name="UserType" class="form-control">
+                                <option value="">-- Select Role --</option>
+                                <option value="User">User</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Vendor">Vendor</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                            <span class="text-danger" id="UserType-error"></span>
                         </div>
                     </div>
 
@@ -134,7 +152,7 @@
 
                         <div class="form-group">
                             <label asp-for="ProfilePhoto"></label>
-                            <input asp-for="ProfilePhoto" type="file" class="form-control" />
+                            <input asp-for="UploadedFile" type="file" class="form-control" />
                         </div>
                     </div>
 
@@ -146,7 +164,7 @@
                     </div>
 
                     <div class="already-account">
-                        Already have an account? <a asp-action="Login">Login</a>
+                        Already have an account? <a asp-action="Login", asp-controller="Home">Login</a>
                     </div>
                 </form>
             </div>
@@ -157,5 +175,6 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        
     }
 }

@@ -16,7 +16,7 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -76,7 +76,7 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<byte[]>("Imagepath")
+                    b.Property<byte[]>("Image")
                         .IsRequired()
                         .HasColumnType("varbinary(MAX)");
 
@@ -118,6 +118,10 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("UserType")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
