@@ -9,13 +9,13 @@ namespace Development_of_Ayurveda_Treatment_System.Models
     {
         [Key]
         public string Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
         [Column(TypeName = "nvarchar(50)")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
         [Column(TypeName = "nvarchar(20)")]
         public string Password { get; set; }
-        [Required]
         [Column(TypeName = "nvarchar(20)")]
         public string Role { get; set; }
     }
