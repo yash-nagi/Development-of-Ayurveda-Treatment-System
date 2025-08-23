@@ -28,17 +28,17 @@ public class UserService
         {
             var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
             Directory.CreateDirectory(uploadsFolder);
-        
+
             var fileName = Guid.NewGuid() + Path.GetExtension(model.UploadedFile.FileName);
             var filePath = Path.Combine(uploadsFolder, fileName);
-        
+
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await model.UploadedFile.CopyToAsync(stream);
             }
-        
+
             model.ProfilePhoto = "/uploads/" + fileName; // save path
-        
+
             using (var ms = new MemoryStream())
             {
                 await model.UploadedFile.CopyToAsync(ms);
@@ -73,5 +73,17 @@ public class UserService
 
         await _userRepository.AddUserAsync(user);
         return (true, "User registered successfully");
+    }
+    public async Task<bool> UpdatePassword(string email, string password)
+    {
+        var updatePassword = await _userRepository.UpdatePassword(email, password);
+        if (updatePassword != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

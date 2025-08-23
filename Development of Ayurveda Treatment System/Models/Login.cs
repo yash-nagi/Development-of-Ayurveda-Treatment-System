@@ -18,5 +18,7 @@ namespace Development_of_Ayurveda_Treatment_System.Models
         public string Password { get; set; }
         [Column(TypeName = "nvarchar(20)")]
         public string Role { get; set; }
+        [NotMapped]
+        public bool RememberMe { get; set; }
     }
 }

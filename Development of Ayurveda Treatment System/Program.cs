@@ -29,6 +29,16 @@ namespace Development_of_Ayurveda_Treatment_System
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<LoginSevice>();
 
+            builder.Services.AddHttpContextAccessor();
+            
+            builder.Services.AddAuthentication("Cookies")
+            .AddCookie("Cookies", options =>
+            {
+                options.LoginPath = "/Login/Login";   // Redirect to login if not authenticated
+                options.ExpireTimeSpan = TimeSpan.FromDays(30); // Default expiry
+                options.SlidingExpiration = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

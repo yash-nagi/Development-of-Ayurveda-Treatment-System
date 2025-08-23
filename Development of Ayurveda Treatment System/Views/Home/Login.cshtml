@@ -9,31 +9,54 @@
             <div class="login-card">
                 <h5>Login to Ayurgrow</h5>
                 <p>New user ?<a href="@Url.Action("Register", "Users")"> Register Now</a></p>
-                <form asp-controller="Login" asp-action="Login" method="post">
-                    <div class="form-group">
-                        <label asp-for="Email">Email</label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
+                <div id="loginForm" class="login-form">
+                    <form asp-controller="Login" asp-action="Login" method="post">
+                        <div class="form-group">
+                            <label asp-for="Email">Email</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
 
-                    <div class="form-group">
-                        <label asp-for="Password">Password</label>
-                        <input asp-for="Password" type="password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="login-button-wrapper">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                    <div class="form-options">
-                        <div class="remember-me">
-                            <input type="checkbox" id="RememberMe" name="RememberMe" />
-                            <label for="RememberMe">Remember me</label>
+                        <div class="form-group">
+                            <label asp-for="Password">Password</label>
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
-                        <div class="forgot-password">
-                            <a href="/Account/ForgotPassword">Forgot password?</a>
+
+                        <div class="login-button-wrapper">
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
-                    </div>
-                </form>
+
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <input asp-for="RememberMe" type="checkbox" />
+                                <label asp-for="RememberMe">Remember me</label>
+                            </div>
+                            <div class="forgot-password">
+                                <a href="#" id="showForgotPassword">Forgot password?</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="resetPasswordForm" style="display:none; margin-top:20px;">
+                    <h6>Reset Password</h6>
+                    <form asp-controller="Login" asp-action="ResetPassword" method="post">
+                        <div class="form-group">
+                            <label for="ResetEmail">Email</label>
+                            <input type="email" id="ResetEmail" name="email" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="NewPassword">New Password</label>
+                            <input type="password" id="NewPassword" name="newPassword" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="ConfirmPassword">Confirm Password</label>
+                            <input type="password" id="ConfirmPassword" name="confirmPassword" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-success">Reset Password</button>
+                        <button type="button" class="btn btn-secondary" id="cancelResetPassword">Cancel</button>
+                    </form>
+                </div>   
                 <hr />
                 <div>
                     <p class="or-login-text">Or login with:</p>

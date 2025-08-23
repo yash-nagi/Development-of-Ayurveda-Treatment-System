@@ -22,4 +22,19 @@ public class LoginRepository : ILogin
         await _context.SaveChangesAsync();
         return login;
     }
+    public async Task<Login> GetUserByEmailAsync(string email)
+    {
+        return await _context.Login.FirstOrDefaultAsync(u => u.Email == email);
+    }
+    public async Task<Login> UpdatePassword(string email, string password)
+    {
+        var login = await _context.Login.FirstOrDefaultAsync(u => u.Email == email);
+        if (login == null)
+        {
+            return null; 
+        }
+        login.Password = password; 
+        await _context.SaveChangesAsync();
+        return login;
+    }
 }
