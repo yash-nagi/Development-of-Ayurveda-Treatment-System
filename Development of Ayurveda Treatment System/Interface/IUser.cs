@@ -7,5 +7,5 @@ public interface IUser
 {
     Task<Users> GetByEmailOrUsernameAsync(string email, string username);
     Task<Users> AddUserAsync(Users user);
-    Task<Login> UpdatePassword(string email, string password);
+    Task<Users> UpdatePassword(string email, string password);
 }

@@ -2,6 +2,7 @@
 using Development_of_Ayurveda_Treatment_System.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace Development_of_Ayurveda_Treatment_System.Controllers
@@ -16,9 +17,52 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
             _loginSevice = loginSevice;
         }
         // GET: UsersController
-        public ActionResult Index()
+        public async Task<ActionResult> UserDashboard(string email, string password)
         {
-            return View();
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+            {
+                Users _users = await _userService.GetByEmailAndPasswordAsync(email, password);
+                if (_users != null)
+                {
+                    return View("UserDashboard", _users);
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        public IActionResult LoadSection(string section)
+        {
+            switch (section)
+            {
+                case "Medicine":
+                    return PartialView("~/Views/Medicine/Medicine.cshtml");
+                case "Vendors":
+                    return PartialView("~/Views/Vendors/Vendors.cshtml");
+                case "Courses":
+                    return PartialView("~/Views/Courses/Courses.cshtml");
+                case "EBooks":
+                    return PartialView("~/Views/EBooks/EBooks.cshtml");
+                case "Billings":
+                    return PartialView("~/Views/Billings/Billings.cshtml");
+                case "Doctors":
+                    return PartialView("~/Views/Doctors/Doctors.cshtml");
+                case "Feedback":
+                    return PartialView("~/Views/Feedback/Feedback.cshtml");
+                case "Reports":
+                    return PartialView("~/Views/Reports/Reports.cshtml");
+                case "Policies":
+                    return PartialView("~/Views/Policies/Policies.cshtml");
+                // add other sections...
+                default:
+                    return Content("<p>Section not found.</p>");
+            }
         }
 
         // GET: UsersController/Details/5
@@ -89,7 +133,7 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserDashboard));
             }
             catch
             {
@@ -110,7 +154,7 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserDashboard));
             }
             catch
             {

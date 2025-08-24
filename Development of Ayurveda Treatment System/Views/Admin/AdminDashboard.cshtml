@@ -1,0 +1,125 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.Admin
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+}
+<main class="main">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar d-flex flex-column p-0" id="sidebar">
+                <div class="p-3 text-center text-white border-bottom">
+                    <h4 class="fw-bold">🌿 Admin Panel</h4>
+                    <small class="text-light">Ayurveda System</small>
+                </div>
+                <ul class="nav flex-column p-2" id="menuTree">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="loadSection('Medicine')">
+                            <i class="fas fa-pills me-2"></i> Manage Medicine
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="loadSection('Vendors')">
+                            <i class="fas fa-truck me-2"></i> Manage Vendors
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="loadSection('Courses')">
+                            <i class="fas fa-book me-2"></i> Manage Courses
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="loadSection('EBooks')">
+                            <i class="fas fa-tablet-alt me-2"></i> Manage E-Books
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="loadSection('Billings')">
+                            <i class="fas fa-file-invoice-dollar me-2"></i> Billing Records
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="loadSection('Doctors')">
+                            <i class="fas fa-user-md me-2"></i> Manage Experts
+                        </a>
+                    </li>
+
+                    <!-- Reports -->
+                    <li class="nav-item">
+                        <a href="#reportSub" data-bs-toggle="collapse" class="nav-link">
+                            <i class="fas fa-chart-line me-2"></i> Reports ▼
+                        </a>
+                        <ul class="collapse list-unstyled ps-4" id="reportSub">
+                            <li><a href="#" class="nav-link small" onclick="loadSection('UserReports')">👤 User Reports</a></li>
+                            <li><a href="#" class="nav-link small" onclick="loadSection('RevenueReports')">💰 Revenue Reports</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Settings -->
+                    <li class="nav-item">
+                        <a href="#settingsSub" data-bs-toggle="collapse" class="nav-link">
+                            <i class="fas fa-cog me-2"></i> Settings ▼
+                        </a>
+                        <ul class="collapse list-unstyled ps-4" id="settingsSub">
+                            <li><a href="#" class="nav-link small" onclick="loadSection('Profile')">⚙️ Admin Profile</a></li>
+                            <li><a href="#" class="nav-link small text-danger" onclick="loadSection('Logout')">🚪 Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Content Area -->
+            <div class="col-md-9 col-lg-10 p-4" id="contentArea">
+                <h2 class="fw-bold">👋 Welcome, @Model.FullName</h2>
+                <p class="text-muted">You have full access to manage Ayurveda Treatment System.</p>
+                <hr />
+
+                <!-- Quick Stats -->
+                <h4 class="fw-semibold mb-3">📊 Quick Stats</h4>
+                <div class="row g-4 text-center">
+                    <div class="col-md-3">
+                        <div class="card stat-card shadow border-0">
+                            <div class="card-body">
+                                <i class="fas fa-pills fa-2x text-primary mb-2"></i>
+                                <h6 class="fw-bold">Medicines</h6>
+                                <p class="display-6">@Model.TotalMedicines</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card shadow border-0">
+                            <div class="card-body">
+                                <i class="fas fa-truck fa-2x text-success mb-2"></i>
+                                <h6 class="fw-bold">Vendors</h6>
+                                <p class="display-6">@Model.TotalVendors</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card shadow border-0">
+                            <div class="card-body">
+                                <i class="fas fa-book fa-2x text-warning mb-2"></i>
+                                <h6 class="fw-bold">Courses</h6>
+                                <p class="display-6">@Model.TotalCourses</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card shadow border-0">
+                            <div class="card-body">
+                                <i class="fas fa-user-md fa-2x text-danger mb-2"></i>
+                                <h6 class="fw-bold">Doctors</h6>
+                                <p class="display-6">@Model.TotalDoctors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</main>
+
+<script>
+    // Razor generates the real URL for loading sections dynamically
+    window.baseUrl = '@Url.Action("LoadSection", "Admin")';
+</script>

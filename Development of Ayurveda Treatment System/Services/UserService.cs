@@ -86,4 +86,16 @@ public class UserService
             return false;
         }
     }
+    public async Task<Users> GetByEmailAndPasswordAsync(string email, string password)
+    {
+        var User = await _userRepository.GetByEmailOrUsernameAsync(email, password);
+        if (User != null)
+        {
+            return (User);
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

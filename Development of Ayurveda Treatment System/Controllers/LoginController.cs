@@ -27,7 +27,14 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 if (result.IsValidate)
                 {
                     Console.WriteLine(result.Message);
-                    return RedirectToAction("Index", "Home");
+                    if (result.login.Role == "User")
+                    {
+                        return RedirectToAction("UserDashboard", "Users", new { email = result.login.Email, password = result.login.Password });
+                    }
+                    else if (result.login.Role == "Admin")
+                    {
+                        return RedirectToAction("AdminDashboard", "Admin");
+                    }
                 }
                 else
                 {
@@ -39,6 +46,7 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
             {
                 return View();
             }
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(string email)
@@ -90,7 +98,7 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                         if (IsUpdatedLogin && IsUpdatedUser)
                         {
                             TempData["Error"] = "Password reset successfully.";
-                        return RedirectToAction("Login", "Home");
+                            return RedirectToAction("Login", "Home");
                         }
                     }
                     else

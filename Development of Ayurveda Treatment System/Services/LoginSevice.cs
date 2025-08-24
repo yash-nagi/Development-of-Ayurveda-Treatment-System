@@ -39,7 +39,7 @@ public class LoginSevice
         await _loginRepository.AddLoginAsync(login);
         return (true, "Login registered successfully");
     }
-    public async Task<(bool IsValidate, string Message)> Login(Login login)
+    public async Task<(bool IsValidate, string Message, Login login)> Login(Login login)
     {
         // Check if login exists
         var existingUser = await _loginRepository.GetByEmailAndPasswordAsync(login.Email, login.Password);
@@ -63,11 +63,11 @@ public class LoginSevice
             await _httpContextAccessor.HttpContext.SignInAsync("Cookies",
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
-            return (true, "Email and Password verified");
+            return (true, "Email and Password verified", existingUser);
         }
         else
         {
-            return (false, "Email and Password not verified");
+            return (false, "Email and Password not verified", existingUser);
         }
     }
     public async Task<(bool IsFound, string message)> GetUserByEmailAsync(string email)

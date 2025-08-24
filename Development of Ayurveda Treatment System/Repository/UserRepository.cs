@@ -22,14 +22,14 @@ public class UserRepository : IUser
         await _context.SaveChangesAsync();
         return user;
     }
-    public async Task<Login> UpdatePassword(string email, string password)
+    public async Task<Users> UpdatePassword(string email, string password)
     {
-        var user = await _context.Login.FirstOrDefaultAsync(u => u.Email == email);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         if (user == null)
         {
-            return null; 
+            return null;
         }
-        user.Password = password; 
+        user.Password = password;
         await _context.SaveChangesAsync();
         return user;
     }
