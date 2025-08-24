@@ -22,6 +22,277 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Appointment", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<TimeSpan>("AppointmentTime")
+                        .HasColumnType("time");
+
+                    b.Property<long>("ConsultationFee")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("DoctorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("tbl_Appointment");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Course", b =>
+                {
+                    b.Property<string>("CourseId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Benefits")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CourseDuration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CourseFeeStruc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("InstituteAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("InstituteContactNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InstituteName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("CourseId");
+
+                    b.ToTable("tbl_Course");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.CredeitCard", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CardExpDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CardHolderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long>("CreditCardID")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DateOfPayment")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<long>("PaymentAmount")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("tbl_CreditCard");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.DebitCard", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CardExpDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CardHolderName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("DateOfPayment")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<long>("DebitCardID")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PaymentAmount")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("tbl_DebitCard");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Doctor", b =>
+                {
+                    b.Property<string>("DoctorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("AppointmentID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<TimeSpan>("AppointmentTime")
+                        .HasColumnType("time");
+
+                    b.Property<long>("ConsultationFees")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ContactNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("DoctorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("DoctorId");
+
+                    b.ToTable("tbl_Doctor");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.EBooks", b =>
+                {
+                    b.Property<string>("BookId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AuthorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("BookName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("DateOfPublish")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<string>("EditionNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("BookId");
+
+                    b.ToTable("tbl_EBooks");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Employes", b =>
+                {
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long>("ContactNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DateOfJoining")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<DateTime>("Emp_DOB")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<string>("Emp_First_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Emp_Last_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Emp_Middle_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long>("Salary")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Sex")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("EmployeeId");
+
+                    b.ToTable("tbl_Employes");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.InternetBanking", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<long>("AccountNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("BankBranch")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("IFSCCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("IT_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("tbl_InternetBanking");
+                });
+
             modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Login", b =>
                 {
                     b.Property<string>("Id")
@@ -117,6 +388,43 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                     b.ToTable("tbl_MedicineBooking");
                 });
 
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Payment", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<long>("Amount")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreditCardID")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("DebitCardID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("InternetBanking")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<string>("PaymentMode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long>("ReceiptNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("tbl_Payment");
+                });
+
             modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Users", b =>
                 {
                     b.Property<string>("UserId")
@@ -202,6 +510,37 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("tbl_User");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Vendor", b =>
+                {
+                    b.Property<string>("VendorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long>("ContactNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<long>("FaxNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("RegistrationNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("VendorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("VendorId");
+
+                    b.ToTable("tbl_Vendor");
                 });
 
             modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.VendorBooking", b =>
