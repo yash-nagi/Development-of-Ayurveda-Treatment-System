@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Development_of_Ayurveda_Treatment_System.Models.Medicine>
+
+@{
+    ViewData["Title"] = "Manage Medicines";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">Manage Medicines</h2>
+        <a href="javascript:void(0)" class="btn btn-success load-section-btn" data-section="CreateMedicine">
+            <i class="fas fa-plus-circle"></i> Add Medicine
+        </a>
+    </div>
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var med in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        @* Medicine Image *@
+                        @if (!string.IsNullOrEmpty(med.MedicinePhoto))
+                        {
+                            <img src="@Url.Content(med.MedicinePhoto)" class="card-img-top medicine-img" alt="@med.MedicineName" />
+                        }
+                        else if (med.Image != null && med.Image.Length > 0)
+                        {
+                            var base64 = "data:image/png;base64," + Convert.ToBase64String(med.Image);
+                            <img src="@base64" class="card-img-top medicine-img" alt="@med.MedicineName" />
+                        }
+                        else
+                        {
+                            <img src="~/images/no-image.png" class="card-img-top medicine-img" alt="No Image" />
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-dark">@med.MedicineName</h5>
+                            <span class="badge bg-info text-dark">Batch: @med.MedicineBatchNo</span>
+                            <p class="mt-2 mb-1"><strong>Manufacturer:</strong> @med.ManufacturerName</p>
+                            <p class="mb-1"><strong>Price:</strong> ₹@med.Price</p>
+                            <p class="text-muted mb-1"><strong>Stock:</strong> @med.Stock</p>
+                            <p class="text-muted small mb-0"><i class="fas fa-calendar-alt"></i> Exp: @med.DateOfExpire.ToShortDateString()</p>
+                        </div>
+
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <a href="@Url.Action("EditMedicine", "Admin", new { id = med.ID })"
+                               class="btn btn-sm btn-primary editMedicineBtn">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="javascript:void(0)" 
+                               class="btn btn-sm btn-info viewMedicineBtn"
+                               data-id="@med.ID">
+                               <i class="fas fa-info-circle"></i> View
+                            </a>
+                            <a asp-action="DeleteMedicine" asp-asp-controller="Admin" asp-route-id="@med.ID" class="btn btn-sm btn-danger deleteMedicine">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted">No medicines available.</p>
+        }
+    </div>
+</div>

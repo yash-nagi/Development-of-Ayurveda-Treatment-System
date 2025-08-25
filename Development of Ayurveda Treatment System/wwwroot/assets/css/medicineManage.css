@@ -1,0 +1,18 @@
+.medicine-card {
+    overflow: hidden;              /* prevents any overflow */
+    border-radius: .75rem;
+  }
+.medicine-card .card-img-top {
+  width: 100% !important;        /* force width */
+  height: 180px !important;      /* smaller, consistent height */
+  object-fit: cover !important;  /* crop, don't stretch */
+  display: block !important;
+}
+.medicine-img {
+    width: 100%;              /* Always span card width */
+    height: 200px;            /* Fixed height for consistency */
+    object-fit: contain;      /* Show full image without cropping */
+    object-position: center;  /* Center align image */
+    display: block;
+    margin: auto;
+}

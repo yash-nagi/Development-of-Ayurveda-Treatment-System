@@ -6,7 +6,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace Development_of_Ayurveda_Treatment_System.Service;
+namespace Development_of_Ayurveda_Treatment_System.Services;
 
 public class LoginSevice
 {

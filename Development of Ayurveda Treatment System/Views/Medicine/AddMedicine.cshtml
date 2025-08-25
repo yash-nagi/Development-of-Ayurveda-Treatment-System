@@ -1,0 +1,85 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.Medicine
+@{
+    ViewData["Title"] = "Create Medicines";
+}
+
+<main class="main">
+    <div class="container position-relative">
+        <div class="container p-4">
+            <h3 class="mb-4">Add New Medicine</h3>
+
+            <form id="addMedicineForm" asp-action="AddMedicine" asp-controller="Admin" method="post" enctype="multipart/form-data">
+                <div class="row g-3">
+                
+                    <div class="col-md-6">
+                        <label asp-for="MedicineNo" class="form-label">Medicine Number</label>
+                        <input asp-for="MedicineNo" class="form-control" />
+                        <span asp-validation-for="MedicineNo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MedicineName" class="form-label">Medicine Name</label>
+                        <input asp-for="MedicineName" class="form-control" />
+                        <span asp-validation-for="MedicineName" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="MedicineBatchNo" class="form-label">Batch Number</label>
+                        <input asp-for="MedicineBatchNo" class="form-control" />
+                        <span asp-validation-for="MedicineBatchNo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="ManufacturerName" class="form-label">Manufacturer Name</label>
+                        <input asp-for="ManufacturerName" class="form-control" />
+                        <span asp-validation-for="ManufacturerName" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label asp-for="ManufacturerAddress" class="form-label">Manufacturer Address</label>
+                        <input asp-for="ManufacturerAddress" class="form-control" />
+                        <span asp-validation-for="ManufacturerAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="DateOfManufactured" class="form-label">Date of Manufactured</label>
+                        <input asp-for="DateOfManufactured" class="form-control" type="date"/>
+                        <span asp-validation-for="DateOfManufactured" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="DateOfExpire" class="form-label">Date of Expiry</label>
+                        <input asp-for="DateOfExpire" class="form-control" type="date"/>
+                        <span asp-validation-for="DateOfExpire" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Price" class="form-label">Price</label>
+                        <input asp-for="Price" class="form-control" step="0.01"/>
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Stock" class="form-label">Stock</label>
+                        <input asp-for="Stock" class="form-control" />
+                        <span asp-validation-for="Stock" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="UploadedFile" class="form-label">Medicine Image</label>
+                        <input asp-for="UploadedFile" type="file" class="form-control" />
+                        <span asp-validation-for="UploadedFile" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary" id="AddMedicine">Add Medicine</button>
+                    <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+

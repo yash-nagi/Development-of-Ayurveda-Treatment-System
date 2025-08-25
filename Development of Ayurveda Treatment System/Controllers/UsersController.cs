@@ -1,5 +1,5 @@
 ﻿using Development_of_Ayurveda_Treatment_System.Models;
-using Development_of_Ayurveda_Treatment_System.Service;
+using Development_of_Ayurveda_Treatment_System.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;

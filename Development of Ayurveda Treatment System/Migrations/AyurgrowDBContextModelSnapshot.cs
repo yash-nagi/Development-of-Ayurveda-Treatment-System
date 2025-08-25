@@ -326,22 +326,36 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                     b.Property<DateTime>("DateOfManufactured")
                         .HasColumnType("DATETIME");
 
+                    b.Property<byte[]>("Image")
+                        .IsRequired()
+                        .HasColumnType("varbinary(MAX)");
+
                     b.Property<string>("ManufacturerAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ManufacturerName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("MedicineBatchNo")
                         .HasColumnType("int");
 
                     b.Property<string>("MedicineName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("MedicineNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MedicinePhoto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Stock")
                         .HasColumnType("int");
 
                     b.Property<string>("UserID")

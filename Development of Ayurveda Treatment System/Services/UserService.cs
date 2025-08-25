@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Development_of_Ayurveda_Treatment_System.Models;
 using Development_of_Ayurveda_Treatment_System.Interface;
 
-namespace Development_of_Ayurveda_Treatment_System.Service;
+namespace Development_of_Ayurveda_Treatment_System.Services;
 
 public class UserService
 {

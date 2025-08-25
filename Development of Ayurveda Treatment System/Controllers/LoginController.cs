@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Development_of_Ayurveda_Treatment_System.Models;
-using Development_of_Ayurveda_Treatment_System.Service;
+using Development_of_Ayurveda_Treatment_System.Services;
 
 namespace Development_of_Ayurveda_Treatment_System.Controllers
 {

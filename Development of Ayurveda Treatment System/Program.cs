@@ -1,7 +1,7 @@
 using Development_of_Ayurveda_Treatment_System.Interface;
 using Development_of_Ayurveda_Treatment_System.Models;
 using Development_of_Ayurveda_Treatment_System.Repository;
-using Development_of_Ayurveda_Treatment_System.Service;
+using Development_of_Ayurveda_Treatment_System.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Development_of_Ayurveda_Treatment_System
@@ -24,10 +24,12 @@ namespace Development_of_Ayurveda_Treatment_System
             // Add Repositories dependencies injection.
             builder.Services.AddScoped<IUser, UserRepository>();
             builder.Services.AddScoped<ILogin, LoginRepository>();
+            builder.Services.AddScoped<IMedicine, MedicineRepository>();
 
             // Add Services dependencies injection.
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<LoginSevice>();
+            builder.Services.AddScoped<MedicineService>();
 
             builder.Services.AddHttpContextAccessor();
             
@@ -63,4 +65,4 @@ namespace Development_of_Ayurveda_Treatment_System
             app.Run();
         }
     }
-}
+}   
