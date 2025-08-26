@@ -1,0 +1,61 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.Vendor
+@{
+    ViewData["Title"] = "Edit Vendor";
+}
+
+<main class="main">
+    <div class="container position-relative">
+        <div class="container p-4">
+            <h3 class="mb-4">Edit Vendor</h3>
+
+            <form id="editVendorForm" asp-action="EditVendor" asp-controller="Admin" method="post">
+                <input type="hidden" asp-for="VendorId" />
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label asp-for="VendorName" class="form-label">Vendor Name</label>
+                        <input asp-for="VendorName" class="form-control" />
+                        <span asp-validation-for="VendorName" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" type="email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="ContactNo" class="form-label">Contact Number</label>
+                        <input asp-for="ContactNo" class="form-control" maxlength="15" />
+                        <span asp-validation-for="ContactNo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label asp-for="Address" class="form-label">Address</label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="RegistrationNo" class="form-label">Registration Number</label>
+                        <input asp-for="RegistrationNo" class="form-control" type="number" />
+                        <span asp-validation-for="RegistrationNo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="FaxNo" class="form-label">Fax Number</label>
+                        <input asp-for="FaxNo" class="form-control" type="number" />
+                        <span asp-validation-for="FaxNo" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-warning" id="EditVendor">Update Vendor</button>
+                    <a asp-action="VendorsManage" asp-controller="Admin" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

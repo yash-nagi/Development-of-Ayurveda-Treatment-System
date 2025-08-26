@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Development_of_Ayurveda_Treatment_System.Models.Vendor>
+
+@{
+    ViewData["Title"] = "Manage Vendors";
+}
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">
+            <i class="fas fa-users-cog me-2"></i> Vendor Management
+        </h2>
+        <a href="javascript:void(0)" class="btn btn-success shadow-sm load-section-btn" data-section="CreateVendor">
+            <i class="fas fa-plus-circle me-2"></i> Add Vendor
+        </a>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Vendor ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Contact No</th>
+                        <th>Reg. No</th>
+                        <th>Fax No</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var vendor in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold">@vendor.VendorId</td>
+                                <td>@vendor.VendorName</td>
+                                <td>@vendor.Email</td>
+                                <td>@vendor.Address</td>
+                                <td>@vendor.ContactNo</td>
+                                <td>@vendor.RegistrationNo</td>
+                                <td>@vendor.FaxNo</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="EditVendor" asp-controller="Admin" asp-route-id="@vendor.VendorId" 
+                                           class="btn btn-sm btn-primary me-1 shadow editVendorBtn">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="DeleteVendor" asp-route-id="@vendor.VendorId" 
+                                           onclick="return confirm('Are you sure you want to delete this vendor?');"
+                                           class="btn btn-sm btn-danger shadow">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" class="text-muted">No vendors found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

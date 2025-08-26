@@ -1,5 +1,7 @@
 ﻿@model Development_of_Ayurveda_Treatment_System.Models.Medicine
 
+<div class="overlay position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50" style="z-index:1040;">
+</div>
 <div class="medicine-detail-card shadow-lg rounded position-fixed top-50 start-50 translate-middle bg-white p-4" 
      style="z-index:1050; width: 500px;">
     
@@ -22,9 +24,15 @@
     </div>
 
     <h4 class="fw-bold text-primary">@Model.MedicineName</h4>
+    <p class="mb-1"><strong>Medicine Id:</strong> @Model.ID</p>
+    <p class="mb-1"><strong>Medicine Number:</strong> @Model.MedicineNo</p>
     <p class="mb-1"><strong>Batch No:</strong> @Model.MedicineBatchNo</p>
     <p class="mb-1"><strong>Manufacturer:</strong> @Model.ManufacturerName</p>
+    <p class="mb-1"><strong>Manufacturer Address:</strong> @Model.ManufacturerAddress</p>
+    <p class="mb-1"><strong>Date of Manufacture:</strong> @Model.DateOfManufactured.ToShortDateString()</p>
     <p class="mb-1"><strong>Price:</strong> ₹@Model.Price</p>
     <p class="mb-1"><strong>Stock:</strong> @Model.Stock</p>
     <p class="mb-1"><strong>Expiry:</strong> @Model.DateOfExpire.ToShortDateString()</p>
+    <p class="mb-1"><strong>User Id:</strong> @Model.UserID</p>
+    <p class="mb-1"><strong>Vendor Id:</strong> @Model.VendorID</p>
 </div>

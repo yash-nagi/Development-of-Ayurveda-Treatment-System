@@ -25,11 +25,13 @@ namespace Development_of_Ayurveda_Treatment_System
             builder.Services.AddScoped<IUser, UserRepository>();
             builder.Services.AddScoped<ILogin, LoginRepository>();
             builder.Services.AddScoped<IMedicine, MedicineRepository>();
+            builder.Services.AddScoped<IVendor, VendorRepository>();
 
             // Add Services dependencies injection.
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<LoginSevice>();
             builder.Services.AddScoped<MedicineService>();
+            builder.Services.AddScoped<VendorService>();
 
             builder.Services.AddHttpContextAccessor();
             

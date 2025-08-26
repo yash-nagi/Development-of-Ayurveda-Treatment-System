@@ -8,10 +8,12 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
     {
         private readonly AyurgrowDBContext _db;
         public MedicineService _medicineService;
-        public AdminController(AyurgrowDBContext db, MedicineService medicineService)
+        public VendorService _vendorervice;
+        public AdminController(AyurgrowDBContext db, MedicineService medicineService, VendorService vendorService)
         {
             _db = db;
             _medicineService = medicineService;
+            _vendorervice = vendorService;
         }
         // GET: AdminController
         public ActionResult AdminDashboard()
@@ -36,12 +38,13 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 switch (section)
                 {
                     case "MedicineManage": return PartialView("~/Views/Medicine/MedicineManage.cshtml", _db.Medicines.ToList());
-                    case "Vendors": return PartialView("~/Views/Admin/Vendors.cshtml", _db.Vendors.ToList());
+                    case "Vendors": return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
                     case "Courses": return PartialView("~/Views/Admin/Courses.cshtml", _db.Courses.ToList());
                     case "EBooks": return PartialView("~/Views/Admin/EBooks.cshtml", _db.EBooks.ToList());
                     case "Billings": return PartialView("~/Views/Admin/Billings.cshtml", _db.Payments.ToList());
                     case "Doctors": return PartialView("~/Views/Admin/Doctors.cshtml", _db.Doctors.ToList());
                     case "CreateMedicine": return PartialView("~/Views/Medicine/AddMedicine.cshtml");
+                    case "CreateVendor": return PartialView("~/Views/Vendors/AddVendor.cshtml");
                     default: return Content("Section not found.");
                 }
             }
@@ -166,18 +169,96 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
             }
         }
         [HttpGet]
-        public async Task<IActionResult> GetMedicineAsync(string id)
+        public async Task<IActionResult> GetMedicine(string id)
         {
             try
             {
                 Medicine medicine = await _medicineService.GetMedicineAsync(id);
                 if (medicine != null)
                 {
-                    return PartialView("~/Views/Medicine/EditMedicineView.cshtml", medicine);
+                    return PartialView("~/Views/Medicine/AdminMedicineView.cshtml", medicine);
                 }
                 else
                 {
-                    return PartialView("~/Views/Medicine/EditMedicineView.cshtml", new Medicine());
+                    return PartialView("~/Views/Medicine/AdminMedicineView.cshtml", new Medicine());
+                }
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+            }
+        }
+        // Vendor Management
+        // Vendore Section. Create, Delete, Update, Read by admin.
+        public async Task<ActionResult> AddVendor(Vendor vendor)
+        {
+            try
+            {
+                vendor.VendorId = Guid.NewGuid().ToString().ToUpper().Replace("-", "");
+                ModelState.Remove(nameof(vendor.VendorId));
+                if (ModelState.IsValid)
+                {
+                    var vendorAddResult = await _vendorervice.AddNewVendor(vendor);
+                    if (vendorAddResult.IsSuccess)
+                    {
+                        return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = vendorAddResult.message });
+                    }
+                }
+                else
+                {
+                    return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditVendor(string Id)
+        {
+            try
+            {
+                Vendor model = await _vendorervice.GetVendor(Id);
+                if (model != null)
+                {
+                    return PartialView("~/Views/Vendors/EditVendor.cshtml", model);
+                }
+                else
+                {
+                    return PartialView("~/Views/Vendors/EditVendor.cshtml", new Medicine());
+                }
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditVendor(Vendor model)
+        {
+            try
+            {
+                ModelState.Remove(nameof(model.VendorId));
+                if (ModelState.IsValid)
+                {
+                    var result = await _vendorervice.EditVendorAsync(model);
+                    if (result)
+                    {
+                        return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
+                    }
+                    else
+                    {
+                        return Json(new { success = false });
+                    }
+                }
+                else
+                {
+                    return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
                 }
             }
             catch (Exception ex)

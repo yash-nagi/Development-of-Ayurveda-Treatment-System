@@ -111,11 +111,11 @@ $(document).ready(function () {
         var id = $(this).data("id"); // grabs the medicine ID   
 
         $.ajax({
-            url: "/Admin/GetMedicineAsync",   // ✅ corrected controller
+            url: '/Admin/GetMedicine',    
             type: "GET",
             data: { id: id },
             success: function (html) {
-                $("#contentArea").html(html); // load partial into contentArea
+                $("#medicineDetailContainer").html(html);
             },
             error: function (xhr, status, error) {
                 console.error("AJAX Error:", status, error);
@@ -124,5 +124,45 @@ $(document).ready(function () {
             }
         });
     });
+    $(document).on("click", ".closeMedicineCard", function () {
+        $("#medicineDetailContainer").empty(); // remove card
+    });
 
+    $(document).on('submit', '#addVendorForm', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '/Admin/AddMedicine',
+            type: 'POST',
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: function () {
+                // Reuse your function
+                loadSection("VendorsManage"); 
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+                console.error("Response:", xhr.responseText);
+                $('#contentArea').html('<p>Error ' + xhr.status + ': ' + xhr.responseText + '</p>');
+            }
+        });
+    });
+    $(document).on('click', '.editVendorBtn', function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr("href"); // /Admin/EditVendor/123
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (html) {
+                $('#contentArea').html(html); // Load Edit form partial into content area
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+                $('#contentArea').html('<p class="text-danger">Error loading edit form</p>');
+            }
+        });
+    });
 });
