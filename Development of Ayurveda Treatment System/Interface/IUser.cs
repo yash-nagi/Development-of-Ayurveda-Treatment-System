@@ -8,4 +8,5 @@ public interface IUser
     Task<Users> GetByEmailOrUsernameAsync(string email, string username);
     Task<Users> AddUserAsync(Users user);
     Task<Users> UpdatePassword(string email, string password);
+    Task<Users> EditUserAsync(Users model);
 }

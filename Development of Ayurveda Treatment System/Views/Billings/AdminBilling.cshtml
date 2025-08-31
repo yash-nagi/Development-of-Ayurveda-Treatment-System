@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Development_of_Ayurveda_Treatment_System.Models.Payment>
+
+@{
+    ViewData["Title"] = "Billing Records";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary"><i class="fas fa-file-invoice-dollar me-2"></i>Billing Records</h2>
+            <a asp-action="AdminDashboard" asp-controller="Admin" id="backToAdminDashboardBtn" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+            </a>
+        </div>
+
+        <!-- Summary Card -->
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5>Total Payments: <span class="text-success fw-bold">₹150,000</span></h5>
+                    <p class="mb-0">Report Period: Jan 2025 - Aug 2025</p>
+                </div>
+                <div>
+                    <span class="badge bg-primary fs-6">Payments: 24</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Cards -->
+        <div class="row g-4">
+            @foreach (var payment in Model)
+            {
+                <div class="col-md-12">
+                    <div class="card shadow-sm border-0">
+                        <div class="row g-0 align-items-center">
+                            <!-- Payment Info -->
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">Payment ID: @payment.ID</h5>
+                                    <p class="mb-1"><strong>User ID:</strong> @payment.UserId</p>
+                                    <p class="mb-1"><strong>Payment Mode:</strong> @payment.PaymentMode</p>
+                                    <p class="mb-1"><strong>Amount:</strong> ₹@payment.Amount</p>
+                                    <p class="mb-1"><strong>Receipt No:</strong> @payment.ReceiptNo</p>
+                                    <p class="mb-1"><strong>Date:</strong> @payment.PaymentDate.ToString("dd MMM yyyy")</p>
+
+                                    @* Show Credit/Debit card info if available *@
+                                    @if (payment.PaymentMode.ToLower().Contains("credit"))
+                                    {
+                                        <p class="mb-0 text-muted"><em>Paid via Credit Card</em></p>
+                                    }
+                                    else if (payment.PaymentMode.ToLower().Contains("debit"))
+                                    {
+                                        <p class="mb-0 text-muted"><em>Paid via Debit Card</em></p>
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- Payment Mode Icon -->
+                            <div class="col-md-4 text-center">
+                                <div class="card-body">
+                                    @if (payment.PaymentMode.ToLower().Contains("credit"))
+                                    {
+                                        <i class="fas fa-credit-card fa-3x text-primary"></i>
+                                        <p class="mt-2 mb-0">Credit Card</p>
+                                    }
+                                    else if (payment.PaymentMode.ToLower().Contains("debit"))
+                                    {
+                                        <i class="fas fa-credit-card fa-3x text-success"></i>
+                                        <p class="mt-2 mb-0">Debit Card</p>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-money-bill-wave fa-3x text-warning"></i>
+                                        <p class="mt-2 mb-0">Other</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Pagination / Load More (Optional) -->
+        <div class="mt-4 text-center">
+            <button class="btn btn-outline-primary"><i class="fas fa-sync-alt me-1"></i> Load More</button>
+        </div>
+    </div>
+</main>
+

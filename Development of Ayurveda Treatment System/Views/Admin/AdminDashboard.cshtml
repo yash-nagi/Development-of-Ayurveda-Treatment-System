@@ -55,7 +55,7 @@
                             <i class="fas fa-chart-line me-2"></i> Reports ▼
                         </a>
                         <ul class="collapse list-unstyled ps-4" id="reportSub">
-                            <li><a href="#" class="nav-link small" onclick="loadSection('UserReports')">👤 User Reports</a></li>
+                            <li><a href="#" class="nav-link small" onclick="loadSection('Reports')">👤 User Reports</a></li>
                             <li><a href="#" class="nav-link small" onclick="loadSection('RevenueReports')">💰 Revenue Reports</a></li>
                         </ul>
                     </li>
@@ -66,8 +66,8 @@
                             <i class="fas fa-cog me-2"></i> Settings ▼
                         </a>
                         <ul class="collapse list-unstyled ps-4" id="settingsSub">
-                            <li><a href="#" class="nav-link small" onclick="loadSection('Profile')">⚙️ Admin Profile</a></li>
-                            <li><a href="#" class="nav-link small text-danger" onclick="loadSection('Logout')">🚪 Logout</a></li>
+                            <li><a href="#" id="adminProfile" class="nav-link small">⚙️ Admin Profile</a></li>
+                            <li><a class="nav-link small text-danger" asp-action="Logout" asp-controller="Admin">🚪 Logout</a></li>
                         </ul>
                     </li>
                 </ul>

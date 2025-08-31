@@ -65,4 +65,16 @@ public class VendorService
             return new Vendor();
         }
     }
+    public async Task<bool> DeleteVendor(string id)
+    {
+        bool IsDeleted = await _vendor.DeleteByIdAsync(id);
+        if (IsDeleted)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

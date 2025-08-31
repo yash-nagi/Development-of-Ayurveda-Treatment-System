@@ -33,4 +33,35 @@ public class UserRepository : IUser
         await _context.SaveChangesAsync();
         return user;
     }
+    public async Task<Users> EditUserAsync(Users model)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.UserId == model.UserId);
+        if (user == null)
+        {
+            return null;
+        }
+        user.UserId = model.UserId;
+        user.UserName = model.UserName;
+        user.Email = model.Email;
+        user.Password = model.Password ;// Hash password if needed
+        user.FirstName = model.FirstName;
+        user.MiddleName = model.MiddleName;
+        user.LastName = model.LastName;
+        user.Gender = model.Gender;
+        user.DOB = model.DOB;
+        user.MobileNo = model.MobileNo;
+        user.PhoneNo = model.PhoneNo;
+        user.Address = model.Address;
+        user.City = model.City;
+        user.PostalCode = model.PostalCode;
+        user.Region = model.Region;
+        user.Country = model.Country;
+        user.Nationality = model.Nationality;
+        user.Religion = model.Religion;
+        user.UserType = model.UserType;
+        user.ProfilePhoto = model.ProfilePhoto;
+        user.Image = model.Image;
+        await _context.SaveChangesAsync();
+        return user;
+    }
 }

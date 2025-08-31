@@ -15,6 +15,14 @@ namespace Development_of_Ayurveda_Treatment_System
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             // Dependency injection for database server string
             //var connectionString = Environment.GetEnvironmentVariable("AYURGROW_DB_CONNECTION");
 
@@ -26,12 +34,14 @@ namespace Development_of_Ayurveda_Treatment_System
             builder.Services.AddScoped<ILogin, LoginRepository>();
             builder.Services.AddScoped<IMedicine, MedicineRepository>();
             builder.Services.AddScoped<IVendor, VendorRepository>();
+            builder.Services.AddScoped<ICourses, CoursesRepository>();
 
             // Add Services dependencies injection.
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<LoginSevice>();
             builder.Services.AddScoped<MedicineService>();
             builder.Services.AddScoped<VendorService>();
+            builder.Services.AddScoped<CourseService>();
 
             builder.Services.AddHttpContextAccessor();
             
@@ -58,7 +68,10 @@ namespace Development_of_Ayurveda_Treatment_System
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

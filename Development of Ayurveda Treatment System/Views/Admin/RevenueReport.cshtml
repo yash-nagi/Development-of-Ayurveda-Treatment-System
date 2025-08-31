@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Revenue Report";
+}
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<main class="main">
+    <div class="container mt-4">
+        <h2 class="mb-4 text-center">Revenue Report</h2>
+
+        <!-- Summary Section -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h6>Total Revenue</h6>
+                        <h3 class="text-success">₹67,300</h3>
+                        <small>Jan 2025 - Aug 2025</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h6>Highest Earning Source</h6>
+                        <h4>Medicine Sales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h6>Most Profitable Month</h6>
+                        <h4>Feb 2025</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue Table -->
+        <div class="card mb-5 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                Revenue Details
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Source</th>
+                                <th>Description</th>
+                                <th class="text-end">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>15-Jan-2025</td><td>Consultations</td><td>Doctor fees</td><td class="text-end">₹5,000</td></tr>
+                            <tr><td>02-Feb-2025</td><td>Medicine Sales</td><td>Ayurvedic Products</td><td class="text-end">₹12,000</td></tr>
+                            <tr><td>10-Mar-2025</td><td>Vendor Partnership</td><td>Commission</td><td class="text-end">₹8,000</td></tr>
+                            <tr><td>22-Apr-2025</td><td>Subscription</td><td>Premium Users</td><td class="text-end">₹10,000</td></tr>
+                            <tr><td>12-May-2025</td><td>Consultations</td><td>Doctor fees</td><td class="text-end">₹7,500</td></tr>
+                            <tr><td>25-Jun-2025</td><td>Medicine Sales</td><td>Ayurvedic Products</td><td class="text-end">₹9,500</td></tr>
+                            <tr><td>18-Jul-2025</td><td>Workshops</td><td>Ayurveda Training</td><td class="text-end">₹6,500</td></tr>
+                            <tr><td>05-Aug-2025</td><td>Consultations</td><td>Doctor fees</td><td class="text-end">₹8,800</td></tr>
+                        </tbody>
+                        <tfoot class="table-light">
+                            <tr>
+                                <td colspan="3" class="text-end fw-bold">Total</td>
+                                <td class="text-end fw-bold">₹67,300</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-primary text-white">Revenue Trend</div>
+            <div class="card-body">
+                <canvas id="revenueChart" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],
+            datasets: [{
+                label: 'Revenue (₹)',
+                data: [5000, 12000, 8000, 10000, 7500, 9500, 6500, 8800],
+                backgroundColor: '#007bff',
+                borderColor: '#0056b3',
+                borderWidth: 1,
+                borderRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+</script>

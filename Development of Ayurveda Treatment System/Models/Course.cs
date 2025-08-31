@@ -11,22 +11,22 @@ public class Course
     [Key]
     public string CourseId { get; set; }
     [Required]
-    [Column(TypeName = "nvarchar(50)")]
+    [Column(TypeName = "nvarchar(200)")]
     public string CourseName { get; set; }
     [Required]
     [Column(TypeName = "nvarchar(50)")]
     public string CourseDuration { get; set; }
     [Required]
-    [Column(TypeName = "nvarchar(50)")]
-    public string CourseFeeStruc { get; set; }
+    [Column(TypeName = "bigint")]
+    public long CourseFeeStruc { get; set; }
     [Required]
-    [Column(TypeName = "nvarchar(50)")]
+    [Column(TypeName = "nvarchar(max)")]
     public string Benefits { get; set; }
     [Required]
-    [Column(TypeName = "nvarchar(50)")]
+    [Column(TypeName = "nvarchar(200)")]
     public string InstituteName { get; set; }
     [Required]
-    [Column(TypeName = "nvarchar(100)")]
+    [Column(TypeName = "nvarchar(200)")]
     public string InstituteAddress { get; set; }
     [Required]
     [Column(TypeName = "int")]

@@ -129,13 +129,42 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
         // POST: UsersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(Users _users)
         {
             try
             {
-                return RedirectToAction(nameof(UserDashboard));
+                if (_users.MiddleName == null)
+                {
+                    _users.MiddleName = string.Empty;
+                }
+                ModelState.Remove(nameof(_users.UserId));
+                ModelState.Remove(nameof(_users.MiddleName));
+                ModelState.Remove(nameof(_users.Image));
+                ModelState.Remove(nameof(_users.ProfilePhoto));
+                ModelState.Remove(nameof(_users.UploadedFile));
+                if (!ModelState.IsValid)
+                    return View(_users);
+
+                var result = await _userService.EditeUserAsync(_users);
+
+                if (result.IsSuccess)
+                {
+                    if (_users.UserType == "Admin")
+                    {
+                        return RedirectToAction("AdminDashboard", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("UserDashboard", "Users" );
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", result.Message);
+                    return View(_users);
+                }
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }

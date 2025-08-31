@@ -1,6 +1,7 @@
 using Development_of_Ayurveda_Treatment_System.Models;
 using Development_of_Ayurveda_Treatment_System.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Development_of_Ayurveda_Treatment_System.Controllers
 {
@@ -31,6 +32,24 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
             };
             return View(model);
         }
+        public IActionResult AdminProfile()
+        {
+            // For example, get currently logged-in user from DB
+            var user = _db.Users.FirstOrDefault(u => u.UserType == "Admin"); 
+            return PartialView("~/Views/Admin/AdminProfile.cshtml", user);
+        }
+        public IActionResult EditAdminProfile(string userId)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.UserId == userId.ToString()); 
+            return PartialView("~/Views/Users/EditProfile.cshtml", user);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Home");
+        }
         public IActionResult LoadSection(string section)
         {
             try
@@ -39,12 +58,15 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 {
                     case "MedicineManage": return PartialView("~/Views/Medicine/MedicineManage.cshtml", _db.Medicines.ToList());
                     case "Vendors": return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
-                    case "Courses": return PartialView("~/Views/Admin/Courses.cshtml", _db.Courses.ToList());
-                    case "EBooks": return PartialView("~/Views/Admin/EBooks.cshtml", _db.EBooks.ToList());
-                    case "Billings": return PartialView("~/Views/Admin/Billings.cshtml", _db.Payments.ToList());
+                    case "Courses": return PartialView("~/Views/Courses/CourseManage.cshtml", _db.Courses.ToList());
+                    case "EBooks": return PartialView("~/Views/EBooks/AdminEbooks.cshtml", _db.EBooks.ToList());
+                    case "Billings": return PartialView("~/Views/Billings/AdminBilling.cshtml", _db.Payments.ToList());
                     case "Doctors": return PartialView("~/Views/Admin/Doctors.cshtml", _db.Doctors.ToList());
                     case "CreateMedicine": return PartialView("~/Views/Medicine/AddMedicine.cshtml");
                     case "CreateVendor": return PartialView("~/Views/Vendors/AddVendor.cshtml");
+                    case "AddCourse": return PartialView("~/Views/Courses/AddCourse.cshtml");
+                    case "RevenueReports": return PartialView("~/Views/Admin/RevenueReport.cshtml");
+                    case "Reports": return PartialView("~/Views/Reports/AdminReports.cshtml");
                     default: return Content("Section not found.");
                 }
             }
@@ -190,6 +212,7 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
         }
         // Vendor Management
         // Vendore Section. Create, Delete, Update, Read by admin.
+        [HttpPost]
         public async Task<ActionResult> AddVendor(Vendor vendor)
         {
             try
@@ -247,6 +270,32 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 if (ModelState.IsValid)
                 {
                     var result = await _vendorervice.EditVendorAsync(model);
+                    if (result)
+                    {
+                        return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
+                    }
+                    else
+                    {
+                        return Json(new { success = false });
+                    }
+                }
+                else
+                {
+                    return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+            }
+        }
+        public async Task<IActionResult> DeleteVendor(string id)
+        {
+            try
+            {
+                if(!string.IsNullOrEmpty(id))
+                {
+                    var result = await _vendorervice.DeleteVendor(id);
                     if (result)
                     {
                         return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());

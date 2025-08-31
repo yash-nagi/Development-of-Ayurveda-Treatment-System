@@ -9,7 +9,8 @@
         const submitBtn = document.getElementById("submitBtn");
 
         let currentStep = 0;
-
+        if (form) {
+            form.addEventListener("submit", function (e) {
         // Show step
         function showStep(index) {
             steps.forEach((step, i) => {
@@ -141,5 +142,6 @@
 
         // Init
         showStep(currentStep);
+    })};
     });
 

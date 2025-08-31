@@ -56,30 +56,29 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
 
                     b.Property<string>("Benefits")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CourseDuration")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("CourseFeeStruc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<long>("CourseFeeStruc")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CourseName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("InstituteAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("InstituteContactNo")
                         .HasColumnType("int");
 
                     b.Property<string>("InstituteName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("CourseId");
 
@@ -205,6 +204,10 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                     b.Property<string>("EditionNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
 
                     b.HasKey("BookId");
 

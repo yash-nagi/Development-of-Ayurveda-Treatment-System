@@ -1,0 +1,151 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.Users
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<main class="main">
+    <div class="container position-relative">
+        <div class="register-section">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text" id="progressText">Step 1 of 4</div>
+            </div>
+
+            <div class="register-card">
+                <h2 class="form-title">Edit Profile</h2>
+
+                <form asp-action="EditProfile" method="post" enctype="multipart/form-data" id="multiStepForm">
+                    @Html.HiddenFor(m => m.UserId)
+                    @Html.HiddenFor(m => m.UserName)
+                    @Html.HiddenFor(m => m.Email)
+                    @Html.HiddenFor(m => m.ProfilePhoto)
+                    @Html.HiddenFor(m => m.Password)
+                    @Html.HiddenFor(m => m.UploadedFile)
+                    @Html.HiddenFor(m => m.Image)
+                    @Html.HiddenFor(m => m.UserType)
+                    <!-- STEP 1 -->
+                    @*<div class="form-step active">
+                        <h4 class="section-heading">Account Information</h4>
+
+                        <div class="form-group">
+                            <label asp-for="UserName"></label>
+                            <input asp-for="UserName" class="form-control" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+                        </div>
+                    </div>*@
+
+                    <!-- STEP 2 -->
+                    <div class="form-step">
+                        <h4 class="section-heading">Personal Information</h4>
+
+                        <div class="form-group">
+                            <label asp-for="FirstName"></label>
+                            <input asp-for="FirstName" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="MiddleName"></label>
+                            <input asp-for="MiddleName" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LastName"></label>
+                            <input asp-for="LastName" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Gender"></label>
+                            <select asp-for="Gender" class="form-control">
+                                <option value="Male" selected="@Model.Gender == "Male"">Male</option>
+                                <option value="Female" selected="@Model.Gender == "Female"">Female</option>
+                                <option value="Others" selected="@Model.Gender == "Others"">Others</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DOB">Date of Birth</label>
+                            <input asp-for="DOB" type="date" class="form-control" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="form-step">
+                        <h4 class="section-heading">Contact & Address</h4>
+
+                        <div class="form-group">
+                            <label asp-for="MobileNo"></label>
+                            <input asp-for="MobileNo" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PhoneNo"></label>
+                            <input asp-for="PhoneNo" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Address"></label>
+                            <input asp-for="Address" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="City"></label>
+                            <input asp-for="City" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PostalCode"></label>
+                            <input asp-for="PostalCode" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Region"></label>
+                            <input asp-for="Region" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Country"></label>
+                            <input asp-for="Country" class="form-control" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 4 -->
+                    <div class="form-step">
+                        <h4 class="section-heading">Other Details</h4>
+
+                        <div class="form-group">
+                            <label asp-for="Nationality"></label>
+                            <input asp-for="Nationality" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Religion"></label>
+                            <input asp-for="Religion" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ProfilePhoto"></label>
+                            <input asp-for="UploadedFile" type="file" class="form-control" />
+                            @if (!string.IsNullOrEmpty(Model.ProfilePhoto))
+                            {
+                                <div class="mt-2">
+                                    <img src="@Url.Content(Model.ProfilePhoto)" alt="Profile" width="100" class="rounded" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" id="prevBtn">Previous</button>
+                        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                        <button type="submit" class="btn btn-success d-none" id="submitBtn" asp-action="Edit" asp-controller="Users">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

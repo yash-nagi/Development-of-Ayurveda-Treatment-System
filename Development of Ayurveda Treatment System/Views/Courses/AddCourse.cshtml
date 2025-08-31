@@ -1,0 +1,70 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.Course
+
+@{
+    ViewData["Title"] = "Add Course";
+}
+
+<main class="main">
+    <div class="container position-relative">
+        <div class="container p-4">
+            <h3 class="mb-4">Add New Course</h3>
+
+            <form id="addCourseForm" method="post" enctype="multipart/form-data">
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label asp-for="CourseName" class="form-label">Course Name</label>
+                        <input asp-for="CourseName" class="form-control" />
+                        <span asp-validation-for="CourseName" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="CourseDuration" class="form-label">Course Duration</label>
+                        <input asp-for="CourseDuration" class="form-control" />
+                        <span asp-validation-for="CourseDuration" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="CourseFeeStruc" class="form-label">Fee Structure</label>
+                        <input asp-for="CourseFeeStruc" class="form-control" />
+                        <span asp-validation-for="CourseFeeStruc" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label asp-for="Benefits" class="form-label">Benefits</label>
+                        <textarea asp-for="Benefits" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Benefits" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="InstituteName" class="form-label">Institute Name</label>
+                        <input asp-for="InstituteName" class="form-control" />
+                        <span asp-validation-for="InstituteName" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="InstituteContactNo" class="form-label">Institute Contact No.</label>
+                        <input asp-for="InstituteContactNo" class="form-control" />
+                        <span asp-validation-for="InstituteContactNo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label asp-for="InstituteAddress" class="form-label">Institute Address</label>
+                        <textarea asp-for="InstituteAddress" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="InstituteAddress" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary" id="AddCourse">Add Course</button>
+                    <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+@section scripts{
+    <script src="~/assets/js/addCourse.js"></script>
+}
