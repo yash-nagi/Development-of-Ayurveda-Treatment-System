@@ -21,15 +21,18 @@
             <div class="card mb-4 shadow-sm border-0">
                 <div class="row g-0 align-items-center">
                     <!-- Image Section -->
-                    <div class="col-md-3">
+                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                        
                         <img src="@(book.BookId switch
-                        {
-                            "B001" => "https://via.placeholder.com/200x200?text=EBook+1",
-                            "B002" => "https://via.placeholder.com/200x200?text=EBook+2",
-                            "B003" => "https://via.placeholder.com/200x200?text=EBook+3",
-                            _ => "https://via.placeholder.com/200x200?text=EBook"
-                        })"
-                             class="img-fluid rounded-start" alt="EBook Image" style="object-fit:cover; height:200px; width:100%;" />
+                            {
+                                "B001" => Url.Content("~/assets/img/ebook.png"),
+                                "B002" => Url.Content("~/assets/img/ebook.png"),
+                                "B003" => Url.Content("~/assets/img/ebook.png"),
+                                _ => Url.Content("~/assets/img/ebook.png")
+                            })"
+                            class="img-fluid rounded shadow-sm"
+                            alt="EBook Image"
+                            style="max-height:180px; max-width:150px; object-fit:contain;" />
                     </div>
 
                     <!-- Details Section -->
@@ -45,8 +48,8 @@
                     <!-- Actions Section -->
                     <div class="col-md-2 text-center">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center h-100">
-                            <button class="btn btn-sm btn-primary mb-2 w-100"><i class="fas fa-edit me-1"></i>Edit</button>
-                            <button class="btn btn-sm btn-danger w-100"><i class="fas fa-trash me-1"></i>Delete</button>
+                            <a href="javascript:void(0);"  data-bookid="@book.BookId" class="btn btn-sm btn-primary mb-2 w-100 edit-ebook-btn"><i class="fas fa-edit me-1"></i>Edit</a>
+                            <a href="javascript:void(0);"  data-bookid="@book.BookId" class="btn btn-sm btn-danger w-100" id="delete-ebook-btn"><i class="fas fa-trash me-1"></i>Delete</a>
                         </div>
                     </div>
                 </div>

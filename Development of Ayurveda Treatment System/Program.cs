@@ -35,6 +35,8 @@ namespace Development_of_Ayurveda_Treatment_System
             builder.Services.AddScoped<IMedicine, MedicineRepository>();
             builder.Services.AddScoped<IVendor, VendorRepository>();
             builder.Services.AddScoped<ICourses, CoursesRepository>();
+            builder.Services.AddScoped<IEbooks, EbooksRepository>();
+            builder.Services.AddScoped<IDoctor, DoctorRepository>();
 
             // Add Services dependencies injection.
             builder.Services.AddScoped<UserService>();
@@ -42,6 +44,8 @@ namespace Development_of_Ayurveda_Treatment_System
             builder.Services.AddScoped<MedicineService>();
             builder.Services.AddScoped<VendorService>();
             builder.Services.AddScoped<CourseService>();
+            builder.Services.AddScoped<EbookService>();
+            builder.Services.AddScoped<DoctorsService>();
 
             builder.Services.AddHttpContextAccessor();
             

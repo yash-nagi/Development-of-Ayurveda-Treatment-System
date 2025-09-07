@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Development_of_Ayurveda_Treatment_System.Models.Doctor>
+
+@{
+    ViewData["Title"] = "Manage Experts";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary fw-bold">
+                <i class="fas fa-user-md me-2"></i>Manage Experts (Doctors)
+            </h2>
+            <div class="d-flex justify-content-end mb-3">
+                <a href="javascript:void(0);" 
+                   id="addDoctorBtn" 
+                   class="btn btn-success">
+                    <i class="fas fa-plus-circle me-1"></i> Add Doctor
+                </a>
+            </div>
+        </div>
+
+        <!-- Doctors List -->
+        <div class="row">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var doctor in Model)
+                {
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 shadow-sm border-0 rounded-3">
+                            <div class="card-body d-flex flex-column">
+                                <!-- Doctor Info -->
+                                <h5 class="card-title text-dark fw-bold mb-2">
+                                    <i class="fas fa-user-md text-primary me-2"></i>@doctor.DoctorName
+                                </h5>
+                                <p class="card-text mb-1"><strong>Email:</strong> @doctor.Email</p>
+                                <p class="card-text mb-1"><strong>Contact:</strong> @doctor.ContactNo</p>
+                                <p class="card-text mb-1"><strong>Department:</strong> @doctor.Department</p>
+                                <p class="card-text mb-1"><strong>Appointment ID:</strong> @doctor.AppointmentID</p>
+                                <p class="card-text mb-1"><strong>Date:</strong> @doctor.AppointmentDate.ToString("dd MMM yyyy")</p>
+                                <p class="card-text mb-1"><strong>Time:</strong> @doctor.AppointmentTime.ToString(@"hh\:mm")</p>
+                                <p class="card-text mb-3"><strong>Fees:</strong> ₹@doctor.ConsultationFees</p>
+
+                                <!-- Action Buttons -->
+                                <div class="mt-auto d-flex justify-content-between">
+                                    <a href="@Url.Action("EditDoctor", "Doctors", new { id = doctor.DoctorId })"
+                                       class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit me-1"></i>Edit
+                                    </a>
+                                    <a href="javascript:void(0);" data-doctorid="@doctor.DoctorId"
+                                       class="btn btn-sm btn-danger delete-doctor-btn">
+                                        <i class="fas fa-trash me-1"></i>Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <div class="alert alert-info text-center shadow-sm">
+                        <i class="fas fa-info-circle me-2"></i>No doctors available. Add new experts to manage.
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>

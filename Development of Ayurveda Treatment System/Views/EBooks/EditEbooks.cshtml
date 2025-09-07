@@ -1,0 +1,54 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.EBooks
+
+@{
+    ViewData["Title"] = "Edit EBook";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <div class="card shadow-sm border-0 mx-auto" style="max-width:700px;">
+            <div class="card-header text-white" style="background-color:#4da6ff;">
+                <h4 class="mb-0"><i class="fas fa-edit me-2"></i>Edit EBook</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="EditEbooks" method="post" id="editEbookForm">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="BookId" />
+                        
+                    <div class="mb-3">
+                        <label asp-for="BookName" class="form-label fw-bold">Book Name</label>
+                        <input asp-for="BookName" class="form-control" placeholder="Enter book name" />
+                        <span asp-validation-for="BookName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="AuthorName" class="form-label fw-bold">Author Name</label>
+                        <input asp-for="AuthorName" class="form-control" placeholder="Enter author name" />
+                        <span asp-validation-for="AuthorName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="EditionNo" class="form-label fw-bold">Edition Number</label>
+                        <input asp-for="EditionNo" class="form-control" placeholder="Enter edition number" />
+                        <span asp-validation-for="EditionNo" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="DateOfPublish" class="form-label fw-bold">Date of Publish</label>
+                        <input asp-for="DateOfPublish" type="date" class="form-control" />
+                        <span asp-validation-for="DateOfPublish" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="javascript:void(0);" class="btn btn-secondary edit-back-Btn">
+                            <i class="fas fa-arrow-left me-1"></i> Back
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i> Update EBook
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

@@ -59,9 +59,9 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                     case "MedicineManage": return PartialView("~/Views/Medicine/MedicineManage.cshtml", _db.Medicines.ToList());
                     case "Vendors": return PartialView("~/Views/Vendors/VendorsManage.cshtml", _db.Vendors.ToList());
                     case "Courses": return PartialView("~/Views/Courses/CourseManage.cshtml", _db.Courses.ToList());
-                    case "EBooks": return PartialView("~/Views/EBooks/AdminEbooks.cshtml", _db.EBooks.ToList());
+                    case "Ebooks": return PartialView("~/Views/Ebooks/AdminEbooks.cshtml", _db.EBooks.ToList());
                     case "Billings": return PartialView("~/Views/Billings/AdminBilling.cshtml", _db.Payments.ToList());
-                    case "Doctors": return PartialView("~/Views/Admin/Doctors.cshtml", _db.Doctors.ToList());
+                    case "Doctors": return PartialView("~/Views/Doctors/ManageDoctors.cshtml", _db.Doctors.ToList());
                     case "CreateMedicine": return PartialView("~/Views/Medicine/AddMedicine.cshtml");
                     case "CreateVendor": return PartialView("~/Views/Vendors/AddVendor.cshtml");
                     case "AddCourse": return PartialView("~/Views/Courses/AddCourse.cshtml");

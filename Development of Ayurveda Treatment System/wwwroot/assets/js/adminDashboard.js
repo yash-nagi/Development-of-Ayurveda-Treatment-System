@@ -357,7 +357,7 @@ $(document).ready(function () {
             url: '/Ebooks/AddEbooks', // Your Admin Dashboard action
             type: 'GET',
             success: function() {
-                loadSection("EBooks"); 
+                loadSection("Ebooks"); 
             },
             error: function(xhr, status, error) {
                 $("#contentArea").html('<div class="alert alert-danger">Failed to load Ebooks Manage. Please try again.</div>');
@@ -365,5 +365,143 @@ $(document).ready(function () {
             }
         });
     });
-    
+    $(document).on("submit", "#saveEbookForm", function(e) {
+        e.preventDefault();
+        let form = $(this); 
+        let formData = form.serialize();
+        // Optional: show loading indicator
+        $("#contentArea").html('<div class="text-center my-5"><span class="spinner-border text-primary"></span> Loading...</div>');
+
+        $.ajax({
+            url: '/Ebooks/AddEbooks', // Your Admin Dashboard action
+            type: 'POST',
+            data: formData,
+            success: function() {
+                loadSection("Ebooks"); 
+            },
+            error: function(xhr, status, error) {
+                $("#contentArea").html('<div class="alert alert-danger">Failed to load Ebooks Manage. Please try again.</div>');
+                console.error(error);
+            }
+        });
+    });
+    $(document).on("click", ".edit-ebook-btn", function(e) {
+        e.preventDefault();
+
+        var BookId = $(this).data("bookid");
+
+        $("#contentArea").html('<div class="text-center my-5">' +
+                               '<span class="spinner-border text-primary"></span> Loading...</div>');
+
+        $.ajax({
+            url: '/Ebooks/EditEbooks',
+            type: 'GET',
+            data: { id: BookId },
+            success: function(result) {
+                if(result) {
+                    $("#contentArea").html(result);
+                } else {
+                    $("#contentArea").html('<div class="alert alert-warning">No data returned.</div>');
+                }
+            },
+            error: function(xhr, status, error) {
+                $("#contentArea").html('<div class="alert alert-danger">Failed to load Edit form.</div>');
+                console.error(error);
+            }
+        });
+    });
+    $(document).on("click", ".edit-back-Btn", function(e) {
+        e.preventDefault();
+
+        // Optional: show loading indicator
+        $("#contentArea").html('<div class="text-center my-5"><span class="spinner-border text-primary"></span> Loading...</div>');
+
+        $.ajax({
+            url: '/Ebooks/EditEbooks', // Your Admin Dashboard action
+            type: 'GET',
+            success: function() {
+                loadSection("Ebooks"); 
+            },
+            error: function(xhr, status, error) {
+                $("#contentArea").html('<div class="alert alert-danger">Failed to load Ebooks Manage. Please try again.</div>');
+                console.error(error);
+            }
+        });
+    });
+    $(document).on("submit", "#editEbookForm", function(e) {
+        e.preventDefault();
+
+        var formData = $(this).serialize(); // include BookId!
+
+        $.ajax({
+            url: '/Ebooks/EditEbooks',
+            type: 'POST',
+            data: formData,
+            success: function(result) {
+                if (result.success !== false) {
+                    loadSection("Ebooks"); // reload ManageEbooks view
+                } else {
+                    alert(result.message || "Failed to update EBook.");
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("Error updating EBook. Check console for details.");
+                console.error(error);
+            }
+        });
+    });
+    $(document).on("click", "#delete-ebook-btn", function(e) {
+        
+        e.preventDefault();
+        console.log("Delete button clicked.");
+        var BookId = $(this).data("bookid");
+        $("#contentArea").html('<div class="text-center my-5">' +
+                               '<span class="spinner-border text-primary"></span> Loading...</div>');
+        if (!confirm("Are you sure you want to delete this E-Book?")) return;
+        $.ajax({
+            url: '/Ebooks/DeleteEbooks',
+            type: 'POST',
+            data: { id: BookId },
+            success: function(result) {
+                if(result) {
+                    $("#contentArea").html(result);
+                } else {
+                    $("#contentArea").html('<div class="alert alert-warning">No data returned.</div>');
+                }
+            },
+            error: function(xhr, status, error) {
+                $("#contentArea").html('<div class="alert alert-danger">Failed to load Edit form.</div>');
+                console.error(error);
+            }
+        });
+    });
+    $(document).ready(function () {
+
+        // Load Add Doctor form on button click
+        $(document).on("click", "#addDoctorBtn", function (e) {
+            e.preventDefault();
+
+            $("#contentArea").html('<div class="text-center my-5">' +
+                                   '<span class="spinner-border text-primary"></span> Loading...</div>');
+
+            $.ajax({
+                url: '/Doctors/AddDoctor', // Controller → Action
+                type: 'GET',
+                success: function (result) {
+                    $("#contentArea").html(result);
+                },
+                error: function () {
+                    $("#contentArea").html('<div class="alert alert-danger">Failed to load Add Doctor form.</div>');
+                }
+            });
+        });
+
+    });
+
+    // Load ManageExperts list when Back button is clicked
+   $(document).on("click", "#backToManageExperts", function (e) {
+        e.preventDefault();
+        loadSection("Doctors");
+    });
+
 });
