@@ -76,6 +76,8 @@ public class DoctorRepository : IDoctor
                 doctor.Department = model.Department;
                 doctor.ContactNo = model.ContactNo;
                 doctor.ConsultationFees = model.ConsultationFees;
+                doctor.AppointmentDate = model.AppointmentDate;
+                doctor.AppointmentTime = model.AppointmentTime;
                 await _context.SaveChangesAsync();
                 return true;
             }

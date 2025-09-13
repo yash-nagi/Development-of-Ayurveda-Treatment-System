@@ -503,5 +503,102 @@ $(document).ready(function () {
         e.preventDefault();
         loadSection("Doctors");
     });
+    $(document).on("submit", "#addDoctorForm", function (e) {
+        e.preventDefault();
+
+        var form = $(this);
+
+        $("#contentArea").html('<div class="text-center my-5">' +
+                               '<span class="spinner-border text-primary"></span> Saving...</div>');
+
+        $.ajax({
+            url: '/Doctors/AddDoctor',
+            type: "POST",
+            data: form.serialize(),
+            success: function (result) {
+                // If you want to reload doctors list after save
+                loadSection("Doctors");
+            },
+            error: function () {
+                $("#contentArea").html('<div class="alert alert-danger">Failed to save Doctor.</div>');
+            }
+        });
+    });
+
+    $(document).on("click", ".edit-doctor-btn", function (e) {
+        e.preventDefault();
+
+        var doctorId = $(this).data("doctorid"); // fetch doctor id
+        console.log("DoctorId for edit:", doctorId); // DEBUG → check value in console
+
+        if (!doctorId) {
+            alert("Doctor ID is missing!");
+            return;
+        }
+
+        $("#contentArea").html('<div class="text-center my-5">' +
+                               '<span class="spinner-border text-primary"></span> Loading...</div>');
+
+        $.ajax({
+            url: '/Doctors/EditDoctor',
+            type: 'GET',
+            data: { id: doctorId }, // send as querystring ?id=xxx
+            success: function (result) {
+                $("#contentArea").html(result);
+            },
+            error: function (xhr) {
+                $("#contentArea").html('<div class="alert alert-danger">Failed to load edit form.</div>');
+                console.error(xhr.responseText);
+            }
+        });
+    });
+    $(document).ready(function () {
+
+    // Submit EditDoctor form via AJAX
+        $(document).on("submit", "#editDoctorForm", function (e) {
+            e.preventDefault();
+
+            var form = $(this);
+
+            $.ajax({
+                url: '/Doctors/EditDoctor',    // /Doctors/EditDoctor
+                type: 'POST',   // POST
+                data: form.serialize(),      // send form data
+                beforeSend: function () {
+                    $("#contentArea").html('<div class="text-center my-5">' +
+                        '<span class="spinner-border text-warning"></span> Updating doctor...</div>');
+                },
+                success: function (result) {
+                    $("#contentArea").html(result);
+                },
+                error: function () {
+                    alert("Error while updating doctor.");
+                }
+            });
+        });
+    });
+    $(document).on("click", ".delete-doctor-btn", function (e) {
+        e.preventDefault();
+
+        var doctorId = $(this).data("doctorid");
+
+        if (!confirm("Are you sure you want to delete this doctor?")) {
+            return;
+        }
+
+        $.ajax({
+            url: '/Doctors/DeleteDoctor',
+            type: 'POST',
+            data: { id: doctorId },
+            success: function (result) {
+                $("#contentArea").html(result);
+            },
+            error: function (xhr, status, error) {
+                console.error("Error: " + error);
+                console.error("Response: " + xhr.responseText);
+                alert("Error while deleting doctor.");
+            }
+        });
+    });
 
 });

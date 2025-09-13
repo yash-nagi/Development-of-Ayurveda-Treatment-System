@@ -13,10 +13,11 @@
                         <h4 class="mb-0"><i class="fas fa-user-md me-2"></i>Add Doctor</h4>
                     </div>
                     <div class="card-body p-4">
-                        @using (Html.BeginForm("AddDoctor", "Doctors", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                        @using (Html.BeginForm("AddDoctor", "Doctors", FormMethod.Post, new { id = "addDoctorForm", @class = "needs-validation", novalidate = "novalidate" }))
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(model => model.DoctorId)
+                            @Html.HiddenFor(model => model.AppointmentID)
 
                             <div class="mb-3">
                                 @Html.LabelFor(model => model.DoctorName, new { @class = "form-label fw-bold" })
@@ -42,11 +43,11 @@
                                 @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
                             </div>
 
-                            <div class="mb-3">
+                            @*<div class="mb-3">
                                 @Html.LabelFor(model => model.AppointmentID, new { @class = "form-label fw-bold" })
                                 @Html.TextBoxFor(model => model.AppointmentID, new { @class = "form-control", placeholder = "Enter appointment ID" })
                                 @Html.ValidationMessageFor(model => model.AppointmentID, "", new { @class = "text-danger" })
-                            </div>
+                            </div>*@
 
                             <div class="mb-3 row">
                                 <div class="mb-3">
