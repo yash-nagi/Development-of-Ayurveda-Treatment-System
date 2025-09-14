@@ -49,7 +49,7 @@
 
                 var form = $(this);
                 $.ajax({
-                    url: '@Url.Action("Feedback", "Users")',
+                    url: '@Url.Action("Feedback", "Feedback")',
                     type: 'POST',
                     data: form.serialize(),
                     success: function (response) {

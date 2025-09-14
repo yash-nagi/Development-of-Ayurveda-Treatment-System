@@ -3,7 +3,7 @@ using Development_of_Ayurveda_Treatment_System.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
+//using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 
 namespace Development_of_Ayurveda_Treatment_System.Controllers
 {
