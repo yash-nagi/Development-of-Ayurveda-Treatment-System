@@ -1,5 +1,55 @@
-﻿<main class="main">
-    <div class="container position-relative">
-        This is medicime page.
+﻿@model IEnumerable<Development_of_Ayurveda_Treatment_System.Models.Medicine>
+
+@{
+    ViewData["Title"] = "Medicines";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4"><i class="fas fa-capsules me-2"></i>Available Medicines</h2>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var med in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 rounded-3 d-flex flex-column">
+                        <!-- Image wrapper with fixed height and white background -->
+                        <div style="height:150px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:white;">
+                            @if (!string.IsNullOrEmpty(med.MedicinePhoto))
+                            {
+                                <img src="@Url.Content(med.MedicinePhoto)" 
+                                     class="card-img-top" 
+                                     alt="@med.MedicineName"
+                                     style="max-height:100%; max-width:100%; object-fit:contain;">
+                            }
+                            else
+                            {
+                                <img src="~/images/no-image.png" 
+                                     class="card-img-top" 
+                                     alt="No Image"
+                                     style="max-height:100%; max-width:100%; object-fit:contain;">
+                            }
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@med.MedicineName</h5>
+                            <p class="card-text flex-grow-1">
+                                <b>Batch No:</b> @med.MedicineBatchNo <br />
+                                <b>Manufacturer:</b> @med.ManufacturerName <br />
+                                <b>Price:</b> ₹@med.Price <br />
+                                <b>Stock:</b> @med.Stock
+                            </p>
+
+                            <div class="input-group mt-auto">
+                                <input type="number" class="form-control quantity-input" min="1" max="@med.Stock" value="1" />
+                                <button class="btn btn-success book-medicine-btn" data-id="@med.ID">
+                                    <i class="fas fa-cart-plus me-1"></i> Book
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </main>

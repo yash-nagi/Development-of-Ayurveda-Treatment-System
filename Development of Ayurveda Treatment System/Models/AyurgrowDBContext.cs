@@ -20,5 +20,6 @@ namespace Development_of_Ayurveda_Treatment_System.Models
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<EBooks> EBooks { get; set; }
         public DbSet<Employes> Employes { get; set; }
+        public DbSet<Feedback> Feedbacks{ get; set; }
     }
 }

@@ -1,5 +1,69 @@
-﻿<main class="main">
-    <div class="container position-relative">
-        This is Feedback page.
+﻿@model Development_of_Ayurveda_Treatment_System.Models.Feedback
+
+@{
+    ViewData["Title"] = "Feedback";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4"><i class="fas fa-comment-dots me-2"></i>Submit Your Feedback</h2>
+
+        <div id="feedbackMessage"></div>
+
+        <div class="card shadow-sm border-0 rounded-3 p-4">
+            <div class="card-body">
+                <form id="feedbackForm" method="post">
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Your Name" />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Your Email" />
+                        <span class="text-danger" asp-validation-for="Email"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Message" class="form-label">Message</label>
+                        <textarea asp-for="Message" class="form-control" rows="5" placeholder="Your Feedback"></textarea>
+                        <span class="text-danger" asp-validation-for="Message"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane me-1"></i> Submit Feedback
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $("#feedbackForm").submit(function (e) {
+                e.preventDefault(); // prevent normal form submission
+
+                var form = $(this);
+                $.ajax({
+                    url: '@Url.Action("Feedback", "Users")',
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function (response) {
+                        // Show success message
+                        $("#feedbackMessage").html('<div class="alert alert-success">Thank you for your feedback!</div>');
+
+                        // Clear the form
+                        form[0].reset();
+                    },
+                    error: function (xhr, status, error) {
+                        $("#feedbackMessage").html('<div class="alert alert-danger">Error submitting feedback. Please try again.</div>');
+                    }
+                });
+            });
+        });
+    </script>
+}

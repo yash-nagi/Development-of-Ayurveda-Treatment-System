@@ -11,10 +11,12 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
     {
         private UserService _userService;
         private LoginSevice _loginSevice;
-        public UsersController(UserService userService, LoginSevice loginSevice)
+        private readonly AyurgrowDBContext _db;
+        public UsersController(UserService userService, LoginSevice loginSevice, AyurgrowDBContext dBContext)
         {
             _userService = userService;
             _loginSevice = loginSevice;
+            _db = dBContext;
         }
         // GET: UsersController
         public async Task<ActionResult> UserDashboard(string email, string password)
@@ -42,17 +44,17 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
             switch (section)
             {
                 case "Medicine":
-                    return PartialView("~/Views/Medicine/Medicine.cshtml");
+                    return PartialView("~/Views/Medicine/Medicine.cshtml", _db.Medicines.ToList());
                 case "Vendors":
-                    return PartialView("~/Views/Vendors/Vendors.cshtml");
+                    return PartialView("~/Views/Vendors/Vendors.cshtml", _db.Vendors.ToList());
                 case "Courses":
-                    return PartialView("~/Views/Courses/Courses.cshtml");
+                    return PartialView("~/Views/Courses/Courses.cshtml", _db.Courses.ToList());
                 case "EBooks":
-                    return PartialView("~/Views/EBooks/EBooks.cshtml");
+                    return PartialView("~/Views/EBooks/EBooks.cshtml", _db.EBooks.ToList());
                 case "Billings":
                     return PartialView("~/Views/Billings/Billings.cshtml");
                 case "Doctors":
-                    return PartialView("~/Views/Doctors/Doctors.cshtml");
+                    return PartialView("~/Views/Doctors/Doctors.cshtml", _db.Doctors.ToList());
                 case "Feedback":
                     return PartialView("~/Views/Feedback/Feedback.cshtml");
                 case "Reports":

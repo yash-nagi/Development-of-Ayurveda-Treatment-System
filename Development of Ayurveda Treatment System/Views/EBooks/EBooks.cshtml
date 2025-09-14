@@ -1,5 +1,46 @@
-﻿<main class="main">
-    <div class="container position-relative">
-        This is E Books page.
+﻿@model IEnumerable<Development_of_Ayurveda_Treatment_System.Models.EBooks>
+
+@{
+    ViewData["Title"] = "E-Books";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4"><i class="fas fa-book me-2"></i>Available E-Books</h2>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var book in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 rounded-3">
+                        <!-- Image wrapper -->
+                        <div style="height:180px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:white;">
+                            <!-- If you have a book cover path, use it. Otherwise use default -->
+                            @{
+                                var imagePath = Url.Content("~/assets/img/ebook.png"); // default image
+                                // If your model has BookCoverPath property, uncomment below:
+                                // if (!string.IsNullOrEmpty(book.BookCoverPath)) { imagePath = Url.Content(book.BookCoverPath); }
+                            }
+                            <img src="@imagePath" class="card-img-top" style="max-height:100%; max-width:100%; object-fit:contain;" alt="@book.BookName" />
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@book.BookName</h5>
+                            <p class="card-text flex-grow-1">
+                                <b>Author:</b> @book.AuthorName <br />
+                                <b>Edition:</b> @book.EditionNo <br />
+                                <b>Published On:</b> @book.DateOfPublish.ToString("dd MMM yyyy")
+                            </p>
+                        </div>
+
+                        <div class="card-footer bg-white">
+                            <a href="#", "Users", new { id = book.BookId })" class="btn btn-primary w-100">
+                                <i class="fas fa-download me-1"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </main>

@@ -205,10 +205,6 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
                     b.HasKey("BookId");
 
                     b.ToTable("tbl_EBooks");
@@ -262,6 +258,31 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                     b.HasKey("EmployeeId");
 
                     b.ToTable("tbl_Employes");
+                });
+
+            modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.Feedback", b =>
+                {
+                    b.Property<string>("FeedbackId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("SubmittedOn")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("FeedbackId");
+
+                    b.ToTable("tbl_Feedback");
                 });
 
             modelBuilder.Entity("Development_of_Ayurveda_Treatment_System.Models.InternetBanking", b =>

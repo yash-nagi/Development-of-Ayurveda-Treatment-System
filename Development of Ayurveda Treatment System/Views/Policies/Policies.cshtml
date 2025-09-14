@@ -1,5 +1,65 @@
-﻿<main class="main">
-    <div class="container position-relative">
-        This is Policies page.
+﻿@{
+    ViewData["Title"] = "AyurGrow Policies";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4"><i class="fas fa-file-alt me-2"></i>AyurGrow Policies</h2>
+
+        <!-- Introduction / Hard-coded paragraph -->
+        <div class="card mb-4 shadow-sm border-0 rounded-3 p-4">
+            <div class="card-body">
+                <p style="text-align:justify;">
+                    Welcome to AyurGrow, your trusted partner in holistic health and wellness. Our policies are carefully designed to ensure transparency, accountability, and a smooth experience for all our users and partners. We prioritize the safety and well-being of our clients, our dedicated team of experts, and our partners. Each policy reflects our commitment to ethical practices, regulatory compliance, and customer satisfaction. At AyurGrow, we believe that clear guidelines foster trust and confidence in the services we provide. Our privacy policy ensures that all personal information collected is handled with utmost care, never shared without consent, and protected using industry-standard security measures. The terms of service outline our mutual responsibilities, ensuring that all parties understand their rights and obligations while engaging with our platform. We also maintain clear guidelines for appointments, consultations, and the use of our digital resources to make certain that every interaction is professional, reliable, and beneficial. By adhering to these policies, AyurGrow creates a structured environment where our users can access high-quality Ayurvedic treatments, educational resources, and expert consultations seamlessly. Furthermore, we are committed to regularly reviewing and updating our policies to reflect evolving best practices, regulatory requirements, and technological advancements. Our goal is to empower users with knowledge, maintain accountability, and promote wellness in every interaction. By choosing AyurGrow, you are engaging with a platform that values your trust, respects your privacy, and strives to provide a consistent, high-quality experience. We encourage all users to familiarize themselves with our policies and guidelines to fully benefit from the services offered. AyurGrow remains dedicated to providing excellent support, professional guidance, and a comprehensive wellness experience that aligns with the principles of Ayurveda and modern standards of care.
+                </p>
+            </div>
+        </div>
+
+        <!-- Individual policies (hard-coded) -->
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 rounded-3 p-3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Privacy Policy</h5>
+                        <p class="card-text flex-grow-1">
+                            We are committed to protecting your personal data and ensuring your privacy while using AyurGrow services. All collected information is kept confidential and used only for service improvement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 rounded-3 p-3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Terms of Service</h5>
+                        <p class="card-text flex-grow-1">
+                            Users must comply with all rules and guidelines while accessing AyurGrow services. Misuse or fraudulent activities may lead to termination of access.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 rounded-3 p-3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Appointment Policy</h5>
+                        <p class="card-text flex-grow-1">
+                            All appointments are scheduled based on doctor availability. Users should arrive on time or cancel in advance. Fees may apply for no-shows or late cancellations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 rounded-3 p-3">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Refund & Cancellation</h5>
+                        <p class="card-text flex-grow-1">
+                            Refunds for services are processed according to AyurGrow’s policies. Users are advised to check refund eligibility and request within the stipulated time period.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>

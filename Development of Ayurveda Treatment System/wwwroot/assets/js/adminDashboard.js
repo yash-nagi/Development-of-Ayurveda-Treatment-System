@@ -6,8 +6,8 @@ function loadSection(section) {
         success: function (html) {
           $('#contentArea').html(html);   // NOTE: contentArea, not "content"
         },
-        error: function () {
-            console.error("AJAX Error:", status, error);
+        error: function (xhr, status, err) {
+            console.error("AJAX Error:", status, err);
             console.error("Response:", xhr.responseText);
             $('#contentArea').html('<p>Error ' + xhr.status + ': ' + xhr.responseText + '</p>');
         }
