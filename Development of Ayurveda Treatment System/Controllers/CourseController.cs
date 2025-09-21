@@ -116,5 +116,17 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 //return View(ex);
             }
         }
+        public IActionResult CourseDetails(string id)
+        {
+            var course = _db.Courses.FirstOrDefault(c => c.CourseId == id);
+            if (course == null) return NotFound();
+            return PartialView("~/Views/Courses/CourseDetails.cshtml", course); // Partial view for AJAX
+        }
+        public IActionResult Course()
+        {
+            var courses = _db.Courses.ToList();
+            if (courses== null) return NotFound();
+            return PartialView("~/Views/Courses/Courses.cshtml", courses); // Partial view for AJAX
+        }
     }
 }

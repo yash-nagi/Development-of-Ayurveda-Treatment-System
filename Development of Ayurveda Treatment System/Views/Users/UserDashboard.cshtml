@@ -1,87 +1,132 @@
-﻿@model Development_of_Ayurveda_Treatment_System.Models.Users
+﻿@model Development_of_Ayurveda_Treatment_System.Models.UserDashboardViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Dashboard";
 }
+
 <div class="container-fluid bg-light"></div>
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-md-3 col-lg-2 bg-white border-end shadow-sm" id="sidebar" style="min-height:100vh;">
-            <div class="py-4 text-center border-bottom">
-                <h4 class="fw-bold text-success">Ayur<span class="text-dark">grow</span></h4>
-                <small class="text-muted">User Dashboard</small>
-            </div
-            <ul class="list-group list-group-flush mt-3" id="menuTree">
-                <li class="list-group-item border-0 px-3 py-2">
-                    <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Medicine')">
-                        <i class="bi bi-capsule text-success me-2"></i> Medicine
-                    </a>
-                </li>
-                <li class="list-group-item border-0 px-3 py-2">
-                    <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Vendors')">
-                        <i class="bi bi-shop text-primary me-2"></i> Vendors
-                    </a>
-                </li>
-                <li class="list-group-item border-0 px-3 py-2">
-                    <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Courses')">
-                        <i class="bi bi-journal-text text-warning me-2"></i> Course
-                    </a>
-                </li>
-                <li class="list-group-item border-0 px-3 py-2">
-                    <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('EBooks')">
-                        <i class="bi bi-book text-danger me-2"></i> E-Books
-                    </a>
-                </li>
-                <li class="list-group-item border-0 px-3 py-2">
-                    <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Billings')">
-                        <i class="bi bi-currency-rupee text-success me-2"></i> Billings
-                    </a>
-                </li>
-                <li class="list-group-item border-0 px-3 py-2">
-                    <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Doctors')">
-                        <i class="bi bi-person-badge text-info me-2"></i> Our Experts
-                    </a>
-                </li
-                <!-- Support with children -->
-                <li class="list-group-item border-0 px-3 py-2">
-                    <a href="#supportSub" data-bs-toggle="collapse" class="d-flex align-items-center text-dark fw-medium text-decoration-none">
-                        <i class="bi bi-life-preserver text-secondary me-2"></i> Support ▼
-                    </a>
-                    <ul class="collapse list-unstyled ps-4 mt-2" id="supportSub">
-                        <li class="mb-2"><a href="#" onclick="loadSection('Feedback')" class="text-decoration-none text-dark"><i class="bi bi-chat-dots me-2"></i> Feedback</a></li>
-                        <li class="mb-2"><a href="#" onclick="loadSection('Reports')" class="text-decoration-none text-dark"><i class="bi bi-bar-chart me-2"></i> Reports</a></li>
-                        <li><a href="#" onclick="loadSection('Policies')" class="text-decoration-none text-dark"><i class="bi bi-file-earmark-text me-2"></i> Policies</a></li>
-                    </ul>
-                </li
-                <!-- Settings with children -->
-                <li class="list-group-item border-0 px-3 py-2">
-                    <a href="#settingsSub" data-bs-toggle="collapse" class="d-flex align-items-center text-dark fw-medium text-decoration-none">
-                        <i class="bi bi-gear text-dark me-2"></i> Settings ▼
-                    </a>
-                    <ul class="collapse list-unstyled ps-4 mt-2" id="settingsSub">
-                        <li class="mb-2"><a href="#" class="menu-link text-decoration-none text-dark" data-url="@Url.Action("Profile", "Dashboard")"><i class="bi bi-person-circle me-2"></i> Profile</a></li>
-                        <li class="mb-2"><a href="#" class="menu-link text-decoration-none text-dark" data-url="@Url.Action("Logout", "Dashboard")"><i class="bi bi-box-arrow-right me-2"></i> Log out</a></li>
-                        <li><a href="#" class="menu-link text-decoration-none text-dark" data-url="@Url.Action("DeleteAccount", "Dashboard")"><i class="bi bi-trash text-danger me-2"></i> Delete Account</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div
-        <!-- Right Panel -->
-        <div class="col-md-9 col-lg-10 p-4 bg-light" id="contentArea">
-            <div class="card shadow-sm rounded-3 border-0">
-                <div class="card-body">
-                    <h2 class="fw-bold text-success">Welcome to Ayurgrow User Dashboard</h2>
-                    <p class="text-muted">Ayurgrow is a modern platform for Ayurveda treatment management.</p>
-                    <hr />
-                    <h4 class="fw-semibold">Your Profile Information</h4>
-                    <p><b>User ID:</b> @User.Identity?.Name</p>
-                    <p><b>Email:</b> user@example.com</p>
-                    <p><b>Member Since:</b> January 2025</p>
+<div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 col-lg-2 bg-white border-end shadow-sm" id="sidebar" style="min-height:100vh;">
+        <div class="py-4 text-center border-bottom">
+            <h4 class="fw-bold text-success">Ayur<span class="text-dark">grow</span></h4>
+            <small class="text-muted">User Dashboard</small>
+        </div>
+        <ul class="list-group list-group-flush mt-3" id="menuTree">
+            <li class="list-group-item border-0 px-3 py-2">
+                <a asp-action="UserDashboard" asp-controller="Users" class="nav-link">
+                    <i class="fas fa-home me-2"></i> Home
+                </a>
+            </li>
+            <li class="list-group-item border-0 px-3 py-2">
+                <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Medicine')">
+                    <i class="bi bi-capsule text-success me-2"></i> Medicine
+                </a>
+            </li>
+            <li class="list-group-item border-0 px-3 py-2">
+                <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Vendors')">
+                    <i class="bi bi-shop text-primary me-2"></i> Vendors
+                </a>
+            </li>
+            <li class="list-group-item border-0 px-3 py-2">
+                <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Courses')">
+                    <i class="bi bi-journal-text text-warning me-2"></i> Course
+                </a>
+            </li>
+            <li class="list-group-item border-0 px-3 py-2">
+                <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('EBooks')">
+                    <i class="bi bi-book text-danger me-2"></i> E-Books
+                </a>
+            </li>
+            <li class="list-group-item border-0 px-3 py-2">
+                <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Billings')">
+                    <i class="bi bi-currency-rupee text-success me-2"></i> Billings
+                </a>
+            </li>
+            <li class="list-group-item border-0 px-3 py-2">
+                <a href="#" class="d-flex align-items-center text-decoration-none text-dark fw-medium" onclick="loadSection('Doctors')">
+                    <i class="bi bi-person-badge text-info me-2"></i> Our Experts
+                </a>
+            </li>
+            <!-- Support -->
+            <li class="list-group-item border-0 px-3 py-2">
+                <a href="#supportSub" data-bs-toggle="collapse" class="d-flex align-items-center text-dark fw-medium text-decoration-none">
+                    <i class="bi bi-life-preserver text-secondary me-2"></i> Support ▼
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-2" id="supportSub">
+                    <li class="mb-2"><a href="#" onclick="loadSection('Feedback')" class="text-decoration-none text-dark"><i class="bi bi-chat-dots me-2"></i> Feedback</a></li>
+                    <li class="mb-2"><a href="#" onclick="loadSection('Reports')" class="text-decoration-none text-dark"><i class="bi bi-bar-chart me-2"></i> Reports</a></li>
+                </ul>
+            </li>
+            <!-- Settings -->
+            <li class="list-group-item border-0 px-3 py-2">
+                <a href="#settingsSub" data-bs-toggle="collapse" class="d-flex align-items-center text-dark fw-medium text-decoration-none">
+                    <i class="bi bi-gear text-dark me-2"></i> Settings ▼
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-2" id="settingsSub">
+                    <li class="mb-2"><a href="#" id="userProfile" class="menu-link text-decoration-none text-dark"><i class="bi bi-person-circle me-2"></i> Profile</a></li>
+                    <li class="mb-2"><a class="menu-link text-decoration-none text-dark" asp-action="Logout" asp-controller="Users"><i class="bi bi-box-arrow-right me-2"></i> Log out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="col-md-9 col-lg-10 p-4 bg-light" id="contentArea">
+
+        <!-- Stats Row -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Appointments</h5>
+                        <h2 class="fw-bold">@Model.TotalAppointments</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Completed Appointments</h5>
+                        <h2 class="fw-bold">@Model.CompletedAppointments</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Pending Appointments</h5>
+                        <h2 class="fw-bold">@Model.PendingAppointments</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Payments</h5>
+                        <h2 class="fw-bold">@Model.TotalPayments</h2>
+                        <p class="mb-0">₹@Model.TotalAmountPaid</p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Welcome/Profile Card -->
+        <div class="card shadow-sm rounded-3 border-0">
+            <div class="card-body">
+                <h2 class="fw-bold text-success">Welcome to Ayurgrow User Dashboard</h2>
+                <p class="text-muted">Ayurgrow is a modern platform for Ayurveda treatment management.</p>
+                <hr />
+                <h4 class="fw-semibold">Your Profile Information</h4>
+                <p><b>User ID:</b> @User.Identity?.Name</p>
+                <p><b>Email:</b> user@example.com</p>
+                <p><b>Member Since:</b> January 2025</p>
+            </div>
+        </div>
+
     </div>
 </div>
+
 <script>
     // Razor generates the real URL here
     window.baseUrl = '@Url.Action("LoadSection", "Users")';

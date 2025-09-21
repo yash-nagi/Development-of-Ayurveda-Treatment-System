@@ -13,6 +13,7 @@
         <div class="card shadow-sm border-0 rounded-3 p-4">
             <div class="card-body">
                 <form id="feedbackForm" method="post">
+                    @Html.AntiForgeryToken()
                     <div class="mb-3">
                         <label for="Name" class="form-label">Name</label>
                         <input asp-for="Name" class="form-control" placeholder="Your Name" />
@@ -39,31 +40,3 @@
         </div>
     </div>
 </main>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-    <script>
-        $(document).ready(function () {
-            $("#feedbackForm").submit(function (e) {
-                e.preventDefault(); // prevent normal form submission
-
-                var form = $(this);
-                $.ajax({
-                    url: '@Url.Action("Feedback", "Feedback")',
-                    type: 'POST',
-                    data: form.serialize(),
-                    success: function (response) {
-                        // Show success message
-                        $("#feedbackMessage").html('<div class="alert alert-success">Thank you for your feedback!</div>');
-
-                        // Clear the form
-                        form[0].reset();
-                    },
-                    error: function (xhr, status, error) {
-                        $("#feedbackMessage").html('<div class="alert alert-danger">Error submitting feedback. Please try again.</div>');
-                    }
-                });
-            });
-        });
-    </script>
-}

@@ -406,12 +406,19 @@ namespace DevelopmentofAyurvedaTreatmentSystem.Migrations
                     b.Property<int>("BookingId")
                         .HasColumnType("int");
 
+                    b.Property<string>("MedicineId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<int>("MedicineNo")
                         .HasColumnType("int");
 
                     b.Property<string>("PaymentMode")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()

@@ -1,5 +1,93 @@
-﻿<main class="main">
-    <div class="container position-relative">
-        This is Reports page.
+﻿@{
+    ViewData["Title"] = "Reports";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4"><i class="fas fa-chart-line me-2"></i>My Course Reports</h2>
+
+        <!-- Summary Cards for User -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 rounded-3 p-3 report-card">
+                    <div class="card-body text-center">
+                        <h5>My Courses</h5>
+                        <h2>3</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 rounded-3 p-3 report-card">
+                    <div class="card-body text-center">
+                        <h5>Completed</h5>
+                        <h2>1</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 rounded-3 p-3 report-card">
+                    <div class="card-body text-center">
+                        <h5>Pending Feedback</h5>
+                        <h2>1</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Courses Table -->
+        <div class="card shadow-sm border-0 rounded-3 p-4">
+            <div class="card-body">
+                <h5 class="mb-4"><i class="fas fa-table me-2"></i>My Enrolled Courses</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Course Name</th>
+                                <th>Status</th>
+                                <th>Duration</th>
+                                <th>Instructor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Ayurveda Basics</td>
+                                <td>Completed</td>
+                                <td>3 Months</td>
+                                <td>Dr. Sharma</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Herbal Medicine</td>
+                                <td>In Progress</td>
+                                <td>2 Months</td>
+                                <td>Dr. Kapoor</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Yoga & Lifestyle</td>
+                                <td>Pending Feedback</td>
+                                <td>4 Months</td>
+                                <td>Dr. Mehta</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 </main>
+
+<style>
+    /* Card hover effect */
+    .report-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .report-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    }
+</style>

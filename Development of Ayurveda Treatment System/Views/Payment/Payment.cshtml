@@ -1,0 +1,195 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.PaymentViewModel
+
+@{
+    ViewData["Title"] = "Payment";
+    ViewBag.PaymentModes = new SelectList(
+        new[] { "Credit Card", "Debit Card", "Internet Banking" },
+        Model.PaymentMode
+    );
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center"><i class="fas fa-credit-card me-2"></i>Make Payment</h2>
+
+        <div id="paymentMessage"></div>
+
+        <!-- Payment Mode Selection -->
+        <div class="card shadow-sm border-0 rounded-4 mb-4 p-4">
+            <div class="mb-3">
+                <label class="form-label">Select Payment Mode</label>
+                <select id="paymentModeSelect" class="form-select">
+                    <option value="">-- Choose Payment Mode --</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="Internet Banking">Internet Banking</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Credit Card Form -->
+        <div id="creditCardForm" class="payment-form card shadow-sm border-0 rounded-4 p-4 d-none">
+            <h5><i class="fas fa-credit-card me-2"></i>Credit Card Payment</h5>
+            <form method="post" asp-action="Payment">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="CreditCard.UserId" value="@Model.UserId" />
+                <input type="hidden" name="CreditCard.ID" value="@Guid.NewGuid().ToString()" />
+                <input type="hidden" name="CreditCard.DateOfPayment" value="@DateTime.Now" />
+                <input type="hidden" name="VendorId" value="@Model.VendorId" />
+                <input type="hidden" name="UserId" value="@Model.UserId" />
+                <input type="hidden" name="MedicineId" value="@Model.MedicineId" />
+                <input type="hidden" name="Quantity" value="@Model.Quantity" />
+                <input type="hidden" name="MedicineNo" value="@Model.MedicineNo" />
+                <input type="hidden" name="PaymentMode" value="@Model.PaymentMode" />
+                <input type="hidden" name="Amount" value="@Model.Amount" />
+
+                <div class="mb-3">
+                    <label class="form-label">Credit Card Number</label>
+                    <input id="CreditCard_CreditCardID" asp-for="CreditCard.CreditCardID" class="form-control" maxlength="16" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Card Holder Name</label>
+                    <input id="CreditCard_CardHolderName" asp-for="CreditCard.CardHolderName" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Expiry Date</label>
+                    <input id="CreditCard_CardExpDate" asp-for="CreditCard.CardExpDate" type="month" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Payment Amount</label>
+                    <input id="CreditCard_PaymentAmount" asp-for="CreditCard.PaymentAmount" class="form-control" readonly />
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Pay with Credit Card</button>
+            </form>
+        </div>
+
+        <!-- Debit Card Form -->
+        <div id="debitCardForm" class="payment-form card shadow-sm border-0 rounded-4 p-4 d-none">
+            <h5><i class="fas fa-university me-2"></i>Debit Card Payment</h5>
+            <form method="post" asp-action="Payment">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="DebitCard.UserId" value="@Model.UserId" />
+                <input type="hidden" name="DebitCard.ID" value="@Guid.NewGuid().ToString()" />
+                <input type="hidden" name="DebitCard.DateOfPayment" value="@DateTime.Now" />
+                <input type="hidden" name="VendorId" value="@Model.VendorId" />
+                <input type="hidden" name="UserId" value="@Model.UserId" />
+                <input type="hidden" name="MedicineId" value="@Model.MedicineId" />
+                <input type="hidden" name="Quantity" value="@Model.Quantity" />
+                <input type="hidden" name="MedicineNo" value="@Model.MedicineNo" />
+                <input type="hidden" name="PaymentMode" value="@Model.PaymentMode" />
+                <input type="hidden" name="Amount" value="@Model.Amount" />
+
+                <div class="mb-3">
+                    <label class="form-label">Debit Card Number</label>
+                    <input id="DebitCard_DebitCardID" asp-for="DebitCard.DebitCardID" class="form-control" maxlength="16" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Card Holder Name</label>
+                    <input id="DebitCard_CardHolderName" asp-for="DebitCard.CardHolderName" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Expiry Date</label>
+                    <input id="DebitCard_CardExpDate" asp-for="DebitCard.CardExpDate" type="month" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Payment Amount</label>
+                    <input id="DebitCard_PaymentAmount" asp-for="DebitCard.PaymentAmount" class="form-control" readonly />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Pay with Debit Card</button>
+            </form>
+        </div>
+
+        <!-- Internet Banking Form -->
+        <div id="netBankingForm" class="payment-form card shadow-sm border-0 rounded-4 p-4 d-none">
+            <h5><i class="fas fa-network-wired me-2"></i>Internet Banking</h5>
+            <form method="post" asp-action="Payment">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="InternetBanking.UserId" value="@Model.UserId" />
+                <input type="hidden" name="InternetBanking.ID" value="@Guid.NewGuid().ToString()" />
+                <input type="hidden" name="InternetBanking.IT_ID" value="1" />
+                <input type="hidden" name="VendorId" value="@Model.VendorId" />
+                <input type="hidden" name="UserId" value="@Model.UserId" />
+                <input type="hidden" name="MedicineId" value="@Model.MedicineId" />
+                <input type="hidden" name="Quantity" value="@Model.Quantity" />
+                <input type="hidden" name="MedicineNo" value="@Model.MedicineNo" />
+                <input type="hidden" name="PaymentMode" value="@Model.PaymentMode" />
+                <input type="hidden" name="Amount" value="@Model.Amount" />
+
+                <div class="mb-3">
+                    <label class="form-label">Account Number</label>
+                    <input id="InternetBanking_AccountNo" asp-for="InternetBanking.AccountNo" class="form-control" maxlength="18" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Bank Name</label>
+                    <input id="InternetBanking_BankName" asp-for="InternetBanking.BankName" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Branch</label>
+                    <input id="InternetBanking_BankBranch" asp-for="InternetBanking.BankBranch" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">IFSC Code</label>
+                    <input id="InternetBanking_IFSCCode" asp-for="InternetBanking.IFSCCode" class="form-control" maxlength="11" />
+                </div>
+
+                <button type="submit" class="btn btn-info w-100">Pay via Net Banking</button>
+            </form>
+        </div>
+
+        <div class="text-center mt-4">
+            <button id="backToBookMedicine" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i> Back to Book Medicine
+            </button>
+        </div>
+    </div>
+</main>
+
+<style>
+    .payment-form {
+        margin-top: 20px;
+    }
+</style>
+
+<script>
+    document.getElementById("paymentModeSelect").value = '@Model.PaymentMode';
+    // Get the selected mode from Razor Model
+    var selectedMode = '@Model.PaymentMode';
+
+    // Hide all payment forms initially
+    document.querySelectorAll(".payment-form").forEach(f => f.classList.add("d-none"));
+
+    // Show the form that matches the selected mode
+    if (selectedMode === "Credit Card") {
+        document.getElementById("creditCardForm").classList.remove("d-none");
+    } else if (selectedMode === "Debit Card") {
+        document.getElementById("debitCardForm").classList.remove("d-none");
+    } else if (selectedMode === "Internet Banking") {
+        document.getElementById("netBankingForm").classList.remove("d-none");
+    }
+
+    // Optional: Update form display when user changes the selection
+    document.getElementById("paymentModeSelect").addEventListener("change", function () {
+        const value = this.value;
+        document.querySelectorAll(".payment-form").forEach(f => f.classList.add("d-none"));
+
+        if (value === "Credit Card") {
+            document.getElementById("creditCardForm").classList.remove("d-none");
+        } else if (value === "Debit Card") {
+            document.getElementById("debitCardForm").classList.remove("d-none");
+        } else if (value === "Internet Banking") {
+            document.getElementById("netBankingForm").classList.remove("d-none");
+        }
+    });
+</script>
+

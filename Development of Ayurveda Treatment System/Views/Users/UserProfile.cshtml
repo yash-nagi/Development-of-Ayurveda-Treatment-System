@@ -1,0 +1,110 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.Users
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<div class="container mt-5">
+    
+    <!-- Header Section -->
+    <div class="row g-0 p-4 align-items-center rounded-4 shadow-sm mb-4"
+         style="background: linear-gradient(135deg, #f0f4ff, #e6eeff);">
+        <div class="col-md-3 text-center mb-3 mb-md-0">
+            <img src="@(string.IsNullOrEmpty(Model.ProfilePhoto) 
+                         ? Url.Content("~/images/default-profile.png") 
+                         : Url.Content(Model.ProfilePhoto))"
+                 class="img-fluid rounded-circle shadow-lg"
+                 style="width: 170px; height: 170px; object-fit: cover; border: 6px solid #fff;" 
+                 alt="Profile Photo" />
+        </div>
+        <div class="col-md-9 ps-md-4 text-center text-md-start">
+            <h2 class="fw-bold mb-1 text-dark">@Model.FirstName @Model.LastName</h2>
+            <h5 class="mb-3">
+                <span class="badge bg-secondary-subtle text-dark px-3 py-2">
+                    @Model.UserType
+                </span>
+            </h5>
+            <p class="mb-1"><i class="bi bi-envelope text-primary me-2"></i> <strong>Email:</strong> @Model.Email</p>
+            <p class="mb-1"><i class="bi bi-telephone text-primary me-2"></i> <strong>Mobile:</strong> @Model.MobileNo</p>
+            <p class="mb-0"><i class="bi bi-geo-alt text-primary me-2"></i> <strong>Location:</strong> @Model.City, @Model.Country</p>
+        </div>
+    </div>
+
+    <!-- Profile Details Section -->
+    <div class="p-4 bg-white rounded-4 shadow-sm mb-4">
+        <h4 class="fw-bold text-secondary mb-4">Profile Information</h4>
+
+        <!-- Personal Information -->
+        <div class="mb-4">
+            <h5 class="text-primary fw-semibold mb-3">👤 Personal Information</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <strong>Username:</strong>
+                    <p class="text-muted">@Model.UserName</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Gender:</strong>
+                    <p class="text-muted">@Model.Gender</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Date of Birth:</strong>
+                    <p class="text-muted">@Model.DOB</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Nationality:</strong>
+                    <p class="text-muted">@Model.Nationality</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Religion:</strong>
+                    <p class="text-muted">@Model.Religion</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="mb-4">
+            <h5 class="text-primary fw-semibold mb-3">📞 Contact Information</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <strong>Email:</strong>
+                    <p class="text-muted">@Model.Email</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Phone:</strong>
+                    <p class="text-muted">@Model.PhoneNo</p>
+                </div>
+                <div class="col-md-12">
+                    <strong>Address:</strong>
+                    <p class="text-muted">
+                        @Model.Address, @Model.City, @Model.Region - @Model.PostalCode <br />
+                        @Model.Country
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Extra Info -->
+        <div class="mb-4">
+            <h5 class="text-primary fw-semibold mb-3">📂 Additional Information</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <strong>User Type:</strong>
+                    <p class="text-muted">@Model.UserType</p>
+                </div>
+                <div class="col-md-6">
+                    <strong>Joined On:</strong>
+                    <p class="text-muted">@DateTime.Now.ToString("MMMM dd, yyyy")</p> <!-- Placeholder -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-end mt-4">
+            <a href="javascript:void(0)" class="btn btn-outline-primary me-2" id="editUserProfile" data-userid="@Model.UserId" data-usertype="@Model.UserType">
+                <i class="bi bi-pencil-square"></i> Edit Profile
+            </a>
+            <a class="btn btn-outline-danger" asp-action="Logout" asp-controller="Users">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+        </div>
+    </div>
+</div>

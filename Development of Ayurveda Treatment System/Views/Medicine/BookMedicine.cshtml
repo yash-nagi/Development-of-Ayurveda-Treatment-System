@@ -1,0 +1,129 @@
+﻿@model Development_of_Ayurveda_Treatment_System.Models.MedicineBookingViewModel
+
+@{
+    ViewData["Title"] = "Book Medicine";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center"><i class="fas fa-pills me-2"></i>Buy Your Medicine</h2>
+
+        <div id="bookingMessage"></div>
+
+        <!-- Medicine Details -->
+        <div class="card shadow-lg border-0 rounded-4 mb-4">
+            <div class="row g-0">
+                <!-- Medicine Image -->
+                <div class="col-md-4 d-flex align-items-center justify-content-center p-3 bg-white">
+                    @if (!string.IsNullOrEmpty(Model.Medicine.MedicinePhoto))
+                    {
+                        <img src="@Url.Content(Model.Medicine.MedicinePhoto)" 
+                             alt="@Model.Medicine.MedicineName" 
+                             class="img-fluid rounded shadow-sm"
+                             style="max-height: 250px; object-fit: contain;" />
+                    }
+                    else
+                    {
+                        <img src="~/images/no-image.png" 
+                             alt="No Image Available"
+                             class="img-fluid rounded shadow-sm"
+                             style="max-height: 250px; object-fit: contain;" />
+                    }
+                </div>
+
+                <!-- Medicine Info -->
+                <div class="col-md-8">
+                    <div class="card-body p-4">
+                        <h4 class="card-title text-primary">@Model.Medicine.MedicineName</h4>
+                        <p class="card-text mb-2"><strong>Batch No:</strong> @Model.Medicine.MedicineBatchNo</p>
+                        <p class="card-text mb-2"><strong>Manufacturer:</strong> @Model.Medicine.ManufacturerName</p>
+                        <p class="card-text mb-2"><strong>Price:</strong> <span class="text-success fw-bold">₹@Model.Medicine.Price</span></p>
+                        <p class="card-text"><strong>Available Stock:</strong> @Model.Medicine.Stock</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="card shadow-sm border-0 rounded-4 p-4">
+            <div class="card-body">
+                <form id="medicineBookingForm" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" asp-for="Booking.MedicineNo" value="@Model.Booking.MedicineNo" />
+                    <input type="hidden" asp-for="Booking.UserId" value="@Model.Booking.UserId" />
+                    <input type="hidden" asp-for="Booking.MedicineId" value="@Model.Booking.MedicineId" />
+
+                    <div class="mb-3">
+                        <label for="Quantity" class="form-label">Quantity</label>
+                        <input asp-for="Booking.Quantity" type="number" min="1" max="@Model.Medicine.Stock" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Booking.Quantity"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="BookingDate" class="form-label">Booking Date</label>
+                        <input asp-for="Booking.BookingDate" 
+                               type="date" 
+                               class="form-control" 
+                               value="@DateTime.Now.ToString("yyyy-MM-dd")" 
+                               readonly />
+                        <span class="text-danger" asp-validation-for="Booking.BookingDate"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="PaymentMode" class="form-label">Payment Mode</label>
+                        <select asp-for="Booking.PaymentMode" class="form-select">
+                            <option value="">-- Select Payment Mode --</option>
+                            <option>Debit Card</option>
+                            <option>Credit Card</option>
+                            <option>Internet Banking</option>
+                        </select>
+                        <span class="text-danger" asp-validation-for="Booking.PaymentMode"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="VendorId" class="form-label">Select Vendor</label>
+                        <select asp-for="Booking.VendorId" class="form-select">
+                            <option value="">-- Select Vendor --</option>
+                            @foreach (var vendor in Model.Vendors)
+                            {
+                                <option value="@vendor.VendorId">@vendor.VendorName - @vendor.Address</option>
+                            }
+                        </select>
+                        <span class="text-danger" asp-validation-for="Booking.VendorId"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success w-50 me-2">
+                            <i class="fas fa-cart-plus me-1"></i> Confirm Booking
+                        </button>
+
+                        <button type="button" id="cancelBooking" class="btn btn-outline-danger w-50">
+                            <i class="fas fa-times me-1"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<style>
+    .card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-weight: 600;
+    }
+
+    button {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+</style>

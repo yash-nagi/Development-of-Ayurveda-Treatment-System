@@ -25,4 +25,6 @@ public class Appointment
     [Required]
     [Column(TypeName = "bigint")]
     public long ConsultationFee { get; set; }
+    [NotMapped]
+    public string DoctorName { get; set; }
 }

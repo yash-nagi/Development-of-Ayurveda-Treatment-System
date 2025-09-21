@@ -1,5 +1,6 @@
 ﻿using Development_of_Ayurveda_Treatment_System.Models;
 using Development_of_Ayurveda_Treatment_System.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -26,7 +27,16 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 Users _users = await _userService.GetByEmailAndPasswordAsync(email, password);
                 if (_users != null)
                 {
-                    return View("UserDashboard", _users);
+                    HttpContext.Session.SetString("UserId", _users.UserId);
+                    var model = new UserDashboardViewModel
+                    {
+                        TotalAppointments = _db.Appointments.Count(a => a.UserId == _users.UserId),
+                        CompletedAppointments = _db.Appointments.Count(a => a.UserId == _users.UserId && a.AppointmentDate < DateTime.Now),
+                        PendingAppointments = _db.Appointments.Count(a => a.UserId == _users.UserId && a.AppointmentDate >= DateTime.Now),
+                        TotalPayments = _db.Payments.Count(p => p.UserId == _users.UserId),
+                        TotalAmountPaid = _db.Payments.Where(p => p.UserId == _users.UserId).Sum(p => p.Amount)
+                    };
+                    return View("UserDashboard", model);
                 }
                 else
                 {
@@ -37,6 +47,27 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
             {
                 return View();
             }
+        }
+
+        public IActionResult UserProfile()
+        {
+            // For example, get currently logged-in user from DB
+            var user = _db.Users.FirstOrDefault(u => u.UserType == "User"); 
+            return PartialView("~/Views/Users/UserProfile.cshtml", user);
+        }
+
+        public IActionResult EditUserProfile(string userId)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.UserId == userId.ToString()); 
+            return PartialView("~/Views/Users/EditProfile.cshtml", user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Home");
         }
 
         public IActionResult LoadSection(string section)
@@ -52,15 +83,15 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 case "EBooks":
                     return PartialView("~/Views/EBooks/EBooks.cshtml", _db.EBooks.ToList());
                 case "Billings":
-                    return PartialView("~/Views/Billings/Billings.cshtml");
+                    return PartialView("~/Views/Billings/Billings.cshtml", _db.Payments.ToList());
                 case "Doctors":
                     return PartialView("~/Views/Doctors/Doctors.cshtml", _db.Doctors.ToList());
                 case "Feedback":
                     return PartialView("~/Views/Feedback/Feedback.cshtml");
                 case "Reports":
                     return PartialView("~/Views/Reports/Reports.cshtml");
-                case "Policies":
-                    return PartialView("~/Views/Policies/Policies.cshtml");
+                //case "Policies":
+                //    return PartialView("~/Views/Policies/Policies.cshtml");
                 // add other sections...
                 default:
                     return Content("<p>Section not found.</p>");

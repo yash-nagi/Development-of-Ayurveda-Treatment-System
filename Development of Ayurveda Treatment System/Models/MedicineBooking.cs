@@ -24,4 +24,10 @@ public class MedicineBooking
     public string PaymentMode { get; set; }
     public string UserId { get; set; }
     public string VendorId { get; set; }
+    [Required]
+    [Column(TypeName = "int")]
+    public int Quantity { get; set; }
+    [Required]
+    [Column(TypeName = "nvarchar(50)")]
+    public string MedicineId { get; set; }
 }

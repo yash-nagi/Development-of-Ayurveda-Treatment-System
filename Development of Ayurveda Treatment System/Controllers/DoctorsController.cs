@@ -102,13 +102,17 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 }
                 else
                 {
-                    return Json(new { success = false, message = "Failed to delete doctor."});
+                    return Json(new { success = false, message = "Failed to delete doctor." });
                 }
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = ex.Message.ToString() });
             }
+        }
+        public async Task<IActionResult> Doctors()
+        {
+            return PartialView("~/Views/Doctors/Doctors.cshtml", _db.Doctors.ToList());
         }
     }
 }

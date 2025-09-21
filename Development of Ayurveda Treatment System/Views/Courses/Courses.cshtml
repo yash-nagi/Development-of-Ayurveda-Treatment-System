@@ -1,5 +1,56 @@
-﻿<main class="main">
-    <div class="container position-relative">
-        This is courses page.
+﻿@model IEnumerable<Development_of_Ayurveda_Treatment_System.Models.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4"><i class="fas fa-book-open me-2"></i>All Courses</h2>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var course in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 rounded-3 course-card">
+                        <div class="card-body">
+                            <h5 class="card-title">@course.CourseName</h5>
+                            <p class="card-text">
+                                <strong>Duration:</strong> @course.CourseDuration <br />
+                                <strong>Fees:</strong> ₹@course.CourseFeeStruc <br />
+                                <strong>Benefits:</strong> @course.Benefits
+                            </p>
+                            <hr />
+                            <p class="mb-1"><strong>Institute:</strong> @course.InstituteName</p>
+                            <p class="mb-1"><strong>Address:</strong> @course.InstituteAddress</p>
+                            <p class="mb-0"><strong>Contact:</strong> @course.InstituteContactNo</p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0 text-end">
+                            <a href="javascript:void(0);" class="btn btn-primary btn-sm details-btn" data-courseid="@course.CourseId">
+                                <i class="fas fa-info-circle me-1"></i> Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </main>
+
+<style>
+    /* Card Hover Effect */
+    .course-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    }
+
+    .card-text {
+        max-height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>

@@ -1,5 +1,67 @@
-﻿<main class="main">
-    <div class="container position-relative">
-        This is Billings page.
+﻿@model IEnumerable<Development_of_Ayurveda_Treatment_System.Models.Payment>
+
+@{
+    ViewData["Title"] = "My Transactions";
+}
+
+<main class="main">
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center"><i class="fas fa-receipt me-2"></i>My Transaction History</h2>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info text-center">
+                You have no transaction history yet.
+            </div>
+        }
+        else
+        {
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Payment Mode</th>
+                            <th>Credit Card ID</th>
+                            <th>Debit Card ID</th>
+                            <th>Internet Banking</th>
+                            <th>Amount (₹)</th>
+                            <th>Payment Date</th>
+                            <th>Receipt No</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int counter = 1;
+                        }
+                        @foreach (var payment in Model)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td>@payment.PaymentMode</td>
+                                <td>@(payment.CreditCardID != 0 ? payment.CreditCardID.ToString() : "-")</td>
+                                <td>@(payment.DebitCardID != 0 ? payment.DebitCardID.ToString() : "-")</td>
+                                <td>@(!string.IsNullOrEmpty(payment.InternetBanking) ? payment.InternetBanking : "-")</td>
+                                <td>@payment.Amount.ToString("N0")</td>
+                                <td>@payment.PaymentDate.ToString("dd MMM yyyy HH:mm")</td>
+                                <td>@payment.ReceiptNo</td>
+                            </tr>
+                            counter++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
     </div>
 </main>
+
+<style>
+    .card {
+        margin-top: 20px;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>

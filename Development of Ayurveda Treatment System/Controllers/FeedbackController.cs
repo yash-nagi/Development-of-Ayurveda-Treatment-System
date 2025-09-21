@@ -19,25 +19,31 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Feedback(Feedback feedback)
         {
+            if (string.IsNullOrWhiteSpace(feedback.Name) ||
+            string.IsNullOrWhiteSpace(feedback.Email) ||
+            string.IsNullOrWhiteSpace(feedback.Message))
+            {
+                return Json(new { success = false, message = "All fields are required." });
+            }
+
             ModelState.Remove(nameof(feedback.FeedbackId));
+
             if (!ModelState.IsValid)
             {
-                return View(feedback);
+                return Json(new { success = false, message = "Invalid feedback data. Please try again." });
             }
-        
+
             try
             {
                 feedback.FeedbackId = Guid.NewGuid().ToString().ToUpper().Replace("-", "");
                 _db.Feedbacks.Add(feedback);
                 await _db.SaveChangesAsync();
-        
-                TempData["Message"] = "Thank you for your feedback!";
-                return RedirectToAction("Feedback");
+
+                return Json(new { success = true, message = "Thank you for your feedback!" });
             }
             catch
             {
-                ModelState.AddModelError("", "An error occurred while submitting your feedback. Please try again.");
-                return View(feedback);
+                return Json(new { success = false, message = "An error occurred while submitting feedback. Please try again." });
             }
         }
     }

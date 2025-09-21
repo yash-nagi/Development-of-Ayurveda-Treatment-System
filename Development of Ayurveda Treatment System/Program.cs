@@ -57,6 +57,13 @@ namespace Development_of_Ayurveda_Treatment_System
                 options.SlidingExpiration = true;
             });
 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
