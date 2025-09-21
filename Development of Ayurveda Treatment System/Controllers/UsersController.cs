@@ -48,11 +48,33 @@ namespace Development_of_Ayurveda_Treatment_System.Controllers
                 return View();
             }
         }
+        public async Task<ActionResult> Home()
+        {
+            var userId = HttpContext.Session.GetString("UserId");
+
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var model = new UserDashboardViewModel
+                {
+                    TotalAppointments = _db.Appointments.Count(a => a.UserId == userId),
+                    CompletedAppointments = _db.Appointments.Count(a => a.UserId == userId && a.AppointmentDate < DateTime.Now),
+                    PendingAppointments = _db.Appointments.Count(a => a.UserId == userId && a.AppointmentDate >= DateTime.Now),
+                    TotalPayments = _db.Payments.Count(p => p.UserId == userId),
+                    TotalAmountPaid = _db.Payments.Where(p => p.UserId == userId).Sum(p => p.Amount)
+                };
+                return View("UserDashboard", model);
+            }
+            else
+            {
+                // session expired or not logged in
+                return RedirectToAction("Login", "Users");
+            }
+        }
 
         public IActionResult UserProfile()
         {
             // For example, get currently logged-in user from DB
-            var user = _db.Users.FirstOrDefault(u => u.UserType == "User"); 
+            var user = _db.Users.FirstOrDefault(u => u.UserType == "User");
             return PartialView("~/Views/Users/UserProfile.cshtml", user);
         }
 
